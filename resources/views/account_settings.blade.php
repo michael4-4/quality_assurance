@@ -42,7 +42,7 @@
             <li><a href="#" class="icon" onclick="toggleDropdown(event)"><i class="fas fa-user"></i>Profile<img src="{{ asset('images/profile-removebg-preview (1).png') }}" alt="Profile Image"></a>
                 <!-- Dropdown menu for "Profile" link -->
                 <ul class="dropdown-menu" id="profileDropdown">
-                    <li><a href="#">Account Settings</a></li>
+                    <li><a href="#">Edit Account</a></li>
                     <li><a href="#" onclick="logout()">Logout</a></li>
                 </ul>
             </li>
@@ -52,30 +52,66 @@
 
 <div class="layout">
     <div class="container">
-        <h1>Account Settings</h1>
+        <h1>Edit Account Information</h1>
+        @if(Session::has('success'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ Session::get('success') }}
+                                </div>
+                            @endif 
 
         <form method="post" action="{{ route('update_account') }}">
             @csrf
-            <label for="department">Department:</label>
-            <input type="text" name="department" value="{{ Auth::user()->department }}" required>
+            <label for="department" class="form-label">Department<span style="color: red">*</span></label>
+            <select name="department" class="form-select" id="department" required>
+                <option value="" disabled>Select Department</option>
+                <option value="Quality Assurance" @if(Auth::user()->department === 'Quality Assurance') selected @endif>Quality Assurance</option>
+                <option value="Computing and Information Sciences" @if(Auth::user()->department === 'Computing and Information Sciences') selected @endif>Computing and Information Sciences</option>
+                <option value="Languages and Literature" @if(Auth::user()->department === 'Languages and Literature') selected @endif>Languages and Literature</option>
+                <option value="Physical Science" @if(Auth::user()->department === 'Physical Science') selected @endif>Physical Science</option>
+                <option value="Mathematics" @if(Auth::user()->department === 'Mathematics') selected @endif>Mathematics</option>
+                <option value="Biology" @if(Auth::user()->department === 'Biology') selected @endif>Biology</option>
+                <option value="Physical Education" @if(Auth::user()->department === 'Physical Education') selected @endif>Physical Education</option>
+                <option value="Social Sciences" @if(Auth::user()->department === 'Social Sciences') selected @endif>Social Sciences</option>
+                </select>
             <br>
-            <label for="name">Name:</label>
-            <input type="text" name="name" value="{{ Auth::user()->name }}" required>
+
+            <label for="college">College:</label>
+            <input type="text" name="college" value="{{ Auth::user()->college }}" required>
             <br>
+
+            <label for="lastname">Last Name:</label>
+            <input type="text" name="lastname" value="{{ Auth::user()->lastname }}" required>
+            <br>
+
+            <label for="firstname">First Name:</label>
+            <input type="text" name="firstname" value="{{ Auth::user()->firstname }}" required>
+            <br>
+
+            <label for="middlename">Middle Name:</label>
+            <input type="text" name="middlename" value="{{ Auth::user()->middlename }}" required>
+            <br>
+
             <label for="email">Email:</label>
             <input type="email" name="email" value="{{ Auth::user()->email }}" required>
             <br>
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password" value="{{ Auth::user()->password }}" required>
+
+            <label for="current_password">Current Password:</label>
+            <input type="password" name="current_password" id="current_password" required>
             <br>
-            <label for="password_confirmation">Confirm Password:</label>
-            <input type="password" name="password_confirmation" value="{{ Auth::user()->password}}"required>
+
+            <label for="new_password">New Password:</label>
+            <input type="password" name="new_password" id="new_password" required>
             <br>
-            <input type="checkbox" onclick="showPassword()"> Show Password
+
+            <label for="password_confirmation">Confirm New Password:</label>
+            <input type="password" name="password_confirmation" id="password_confirmation" required>
+            <br>
+
+            <input type="checkbox" id="showPassword"> Show Password
             <br>
             <div class="submitposition">
-            <button type="submit">Save Changes</button>
-            <a href="/home"><button type="button">Cancel</button></a>
+                <button type="submit">Save Changes</button>
+                <a href="/home"><button type="button">Cancel</button></a>
             </div>
         </form>
 </div>
@@ -83,15 +119,21 @@
 </div>
 
     <script>
-        function showPassword() {
-            const passwordInput = document.getElementById("password");
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-            } else {
-                passwordInput.type = "password";
-            }
-        }
+    var showPasswordCheckbox = document.getElementById("showPassword");
+    var passwordInputs = document.querySelectorAll("input[type='password']");
 
+    showPasswordCheckbox.addEventListener("change", function () {
+        for (var i = 0; i < passwordInputs.length; i++) {
+            passwordInputs[i].type = this.checked ? "text" : "password";
+        }
+    });
+
+    // Make sure to re-hide passwords when the form is submitted (e.g., on Save Changes)
+    document.querySelector("form").addEventListener("submit", function () {
+        for (var i = 0; i < passwordInputs.length; i++) {
+            passwordInputs[i].type = "password";
+        }
+    });
         // Function to toggle the visibility of the profile dropdown menu
      // Function to toggle the visibility of the profile dropdown menu
      function toggleDropdown(event) {

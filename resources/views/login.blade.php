@@ -35,37 +35,26 @@
     
             
             <table>
-                <tr>
-                    <td class="logo-container">
-                        <table>
-                            <tr>
-                                <td style="text-align: right;">
-                                    <span style="color: white; font-size: 20px; font-family: Times New Roman, Times, serif;">QUALITY ASSURANCE</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span style="color: white; text-decoration: underline; font-size: 20px; font-family: Times New Roman, Times, serif;">FEM Building (Admin Building) Room 204 Second Floor</span>
-                                </td>
-                            </tr>
-                        </table>
-                        <td class="logoqa">
-                        <img src="{{ asset('images/QA_Logo.png') }}" alt="mmsulogo" id="logo" style="width: 80px; height:80px">
-                        </td>
-                    </td>
-                </tr>
+            <tr>
+                <td class="logo-container">
+                    <table>
+                        <tr>
+                            <td style="text-align: right;">
+                                <span style="color: white; font-size: 20px; font-family: Garamond;">QUALITY ASSURANCE</span>
+                            </td>
+                        </tr>
+                        <tr>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
             </table>
 
 <div class="layout">
     <div class="row justify-content-center">
         <div class="col-lg-4">
             <div class="card">
-                <div class="card-header text-center">
-                    <div class="circle-image">
-                        <img src="{{ asset('images/QA_Logo.png') }}" alt="Avatar">
-                    </div>
-                    <h2 class="card-title text-center" style="font-family: 'Times New Roman', Times, serif">Login Now</h2>
-                </div>
+                
             <div class="card-body">
                     @if(Session::has('error'))
                         <div class="alert alert-danger" role="alert">
@@ -94,15 +83,15 @@
                     </div>
                 </div>
 
-                <div class="">
-                    <div class="d-grid">
-                        <button class="btn btn-success">Login</button>
+                <div class="button-position">
+                    <div class="button-color">
+                        <button class="btn btn-success" style="background-color: rgb(12, 75, 5);">Login</button>
                     </div>
                 </div>
 
                 <div class="text-center">
                     <br>
-                    <p class="form-label">Doesn't have an account? <a href="{{ route('register') }}" style="color: #FFD700">Register here</a></p>
+                    <p class="form-label">Doesn't have an account? <a href="{{ route('register') }}" style="color: rgb(255, 203, 0);">Register here</a></p>
                 </div>
 
 
@@ -113,6 +102,43 @@
         </div>
     </div>
 </div>
+
+<footer class="footerdesign">
+    <div id="">
+            <table>
+                <tr>
+                    <td>
+                    <img src="{{ asset('images/QA_Logo.png') }}" alt="mmsulogo" id="logo" style="width: 80px; height:80px; margin-top:10px;">
+                    </td>
+                    <td>
+                        <div class="text-container">
+                            <div class="footertext"><img src ="{{asset('images/building.png')}}" style="width: 33px; height:25px; margin-right:7px; margin-left:-9px; margin-bottom:5px;" >Room 204 FEM Hall (Administration Building)</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <table>
+            <tr>
+                <td class="logo-container">
+                    <table>
+                        <tr>
+                            <td style="text-align: right;">
+                                <div class="position">
+                                <div class="footerright1">Contact Us!</div>
+                                <div class="footerright2"><img src ="{{asset('images/telephone.png')}}" style="width: 30px; height:20px; margin-right:10px;" >Local 1112</div>
+                                <div class="footerright3"><img src ="{{asset('images/email.png')}}" style="width: 30px; height:25px; margin-right:10px;" >quality-assurance@mmsu.edu.ph</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </footer>
 </body>
 </html>
 

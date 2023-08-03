@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class User extends Authenticatable
 {
@@ -19,7 +21,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'department',
-        'name',
+        'college',
+        'lastname',
+        'firstname',
+        'middlename',
         'email',
         'password',
     ];
@@ -43,4 +48,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function checkDuplicateCredentials($firstname, $lastname, $middlename, $email) {
+        $user = User::where([
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'middlename' => $middlename,
+            'email' => $email,
+        ])->first();
+    
+        return $user !== null;
+    }
 }

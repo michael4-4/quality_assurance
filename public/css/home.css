@@ -1,12 +1,12 @@
     /* Custom CSS for the navigation bar */
     #header {
-        background-color: darkgreen;
+        background-color: rgb(12, 75, 5);
                 width: auto;
                 height: 95px;
                 margin: 0px;
                 padding: 0px;
-                border-bottom: 3.5px solid #FFD700;
-                border-top: 3.5px solid #FFD700;
+                border-bottom: 3.5px solid rgb(255, 203, 0);
+                border-top: 3.5px solid rgb(255, 203, 0);
     }
 
     #logo1 {
@@ -20,15 +20,17 @@
             width: 85px;
             height: 85px;
             margin: 2px 15px 10px 10px;
+            margin-left: -10px;
             
 
     }
 
     .text-container {
-            margin-left: 10px; /* Adjust the margin as needed to separate the logo and text */
+            margin-left: 1px; /* Adjust the margin as needed to separate the logo and text */
             display: flex;
             flex-direction: column;
             margin-bottom: 10px;
+            margin-left: -10px;
         }
 
     .text-row {
@@ -88,7 +90,8 @@
     }
 
     .position {
-        text-align: center;
+        text-align: left;
+        margin-left: -90px;
     }
 
     .dropdown-menu {
