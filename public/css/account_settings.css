@@ -29,34 +29,35 @@
 
 }
 
-    .text-container {
-        margin-left: 1px; /* Adjust the margin as needed to separate the logo and text */
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 10px;
-        margin-left: -10px;
-    }
+.text-container {
+    margin-left: 1px; /* Adjust the margin as needed to separate the logo and text */
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    margin-left: -6px;
+}
 
-    .text-row {
-            font-family: 'playfair-display', serif;
-            color: white;
-            text-transform: uppercase;
-    }
+.text-row {
+    font-family: 'Garamond';
+    color: white;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+.text-row2 {
+    font-family: 'Garamond', Times, serif;
+    color: white;
+    font-size: 23px;
     
-    .text-row2 {
-            font-family: 'Times New Roman', Times, serif;
-            color: white;
-            text-transform: uppercase;
-            font-size: 25px;
-            
-    }
+}
 
-    .text-row3 {
-            font-family: 'Times New Roman', Times, serif;
-            color: white;
-            text-transform: uppercase;
-            
-    }
+.text-row3 {
+    font-family: 'Garamond', Times, serif;
+    color: white;
+    text-transform: uppercase;
+    font-size: 13px;
+    
+}
 
     nav {
         position: absolute;
@@ -68,14 +69,16 @@
     nav ul {
         list-style: none;
         margin: 0;
-        padding: 0;
+        padding:0;
     }
 
     nav ul li {
         display: inline-block;
-        margin-right: 15px;
-        margin-top: 11px;
-        font-size: 25px;
+        margin-right: -15px;
+        margin-left: 15px;
+        margin-top: 15px;
+        font-size: 20px;
+        font-family: 'Garamond', Times, serif;
     }
 
     nav ul li a {
@@ -164,7 +167,7 @@
 
 /* Form styles */
 form {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 label {
@@ -213,7 +216,7 @@ button[type="button"] {
 
 .submitposition {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 a {
@@ -227,6 +230,63 @@ a:hover {
 }
 
 .layout {
-    padding-top: 65px;
+    padding-top:8px;
     padding-bottom: 65px;
     }
+
+#positionedit {
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.col {
+    flex-basis: 30%; /* Adjust this value to control the width of the columns */
+}
+
+/* Add some margin between the columns */
+.col:not(:first-child) {
+    margin-left: 10px; /* Adjust this value to control the spacing */
+}
+
+/* Adjust the font size and padding of all input fields */
+input.form-control-sm {
+    font-size: 12.5px;
+    padding: 0.3rem 0.5rem;
+}
+
+/* Adjust the font size and padding of the select dropdown */
+select.form-control-sm {
+    font-size: 12.5px;
+    padding: 0.3rem 0.5rem;
+}
+
+/* Adjust the font size and padding of the labels */
+label {
+    font-size: 12.5px;
+    padding: 0.2rem 0.5rem;
+}
+
+/* Adjust the font size and padding of the buttons */
+button.btn-sm {
+    font-size: 12.5px;
+    padding: 0.2rem 0.5rem;
+}
+
+/* Additional styles for checkbox label */
+label[for="showPassword"] {
+    font-size: 12.5px;
+    padding-left: 5px;
+}
+
+.form-control-sm {
+    margin-top: -10px;
+}
+
+.container {
+    box-shadow: 5px 5px 5px rgba(0.3, 0.3, 0.3, 0.3);
+ /* Add some padding to the card content */
+}

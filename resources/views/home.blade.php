@@ -52,11 +52,11 @@
 
     <!-- Main content section -->
     <div class="container"><br>
-        <h2 class="position">Welcome {{ Auth::user()->firstname }}!</h2>
+        <h3 class="position">Welcome {{ Auth::user()->firstname }}!</h3>
     </div>
 
     <div class="foreground-container">
-        <img src="{{asset('images/mmsu2.png')}}">
+        <img src="{{asset('images/mmsu2.png')}}" style="width: 1352px;">
     </div>
      
 

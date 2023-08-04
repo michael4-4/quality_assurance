@@ -55,20 +55,8 @@
         @csrf
         <!-- Add your form fields here -->
         <div>
-        <h1>Upload Document</h1>
-            <label for="document">Select Document:</label>
-            <input type="file" name="document" id="document">
-            <br>
-
-            <label for="documenttype">Document Type:</label>
-            <select>
-                <option value = ""></option>
-                <option value = "pdf">.pdf</option>
-                <option value = "pdf">.docx</option>
-                <option value = "pdf">.jpeg</option>
-            </select>
-            <br>
-
+        <h2>Upload Document</h2>
+            
             <label for="programcourse">Program Course: </label>
             <input type="text" name="programcourse" id="programcourse" placeholder="Bachelor of Science in ...">
             <br>
@@ -93,8 +81,13 @@
             <input type="text" name="grandmean" id="grandmean" placeholder="4.62">
             <br>
 
+            <label for="document">Select Document:</label>
+            <input type="file" name="document" id="document">
+            <br>
+
             <div class="position">
             <input type="submit" name="upload" value="Upload Now!">
+            <a href="/home"><button type="button" class="btn btn-sm btn-secondary">Cancel</button></a>
             </div>
         </div>
     </form>

@@ -14,6 +14,7 @@
     
 </head>
 <body>  
+
         <div id="header">
             <table>
                 <tr>
@@ -38,7 +39,7 @@
                     <table>
                         <tr>
                             <td style="text-align: right;">
-                                <span style="color: white; font-size: 20px; font-family: Garamond;">QUALITY ASSURANCE</span>
+                                <span style="color: white; font-size: 18px; font-family: Garamond;">QUALITY ASSURANCE</span>
                             </td>
                         </tr>
                         <tr>
@@ -48,12 +49,12 @@
             </tr>
         </table>
       
-<div class="layout">
-            <div class="row justify-content-center">
-                <div class="col-lg-5"> <!-- Reduced the column size to make the form smaller -->
-                    <div class="card">
-
-                        <div class="card-body">
+        <div class="layout">
+        <div class="row justify-content-center">
+        <div class="col-lg-6">
+        <div class="card">
+        
+                <div class="card-body"> 
                             @if(Session::has('success'))
                                 <div class="alert alert-success" role="alert">
                                     {{ Session::get('success') }}
@@ -61,8 +62,11 @@
                             @endif 
                             <form action="{{ route('register')}}" method="POST">
                                 @csrf
-                        
+                                <div class="title">
+                                <h2 style="font-family: Garamond; margin-left: 230px;"><strong>Register Here</strong></h2>
+                                </div>
                         <div class="mb-3">
+                                
                             <label for="department" class="form-label">Department<span style="color: red">*</span></label>
                             <select name="department" class="form-select" id="department" required>
                             <option value="" disabled selected>Select Department</option>
@@ -78,33 +82,35 @@
                         </div>
 
                                 <div class="mb-3">
-                                    <label for="college" class="form-label">College<span style="color: red">*</span></label>
-                                    <input type="text" name="college" class="form-control" id="college" placeholder="College">
+                                    <label for="college" class="form-label">College</label>
+                                    <input type="text" name="college" class="form-control" id="college" placeholder="College (N/A if none)">
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="lastname" class="form-label">Last Name<span style="color: red">*</span></label>
-                                    <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Lastname" required>
-                                    @error('lastname')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="lastname" class="form-label">Last Name<span style="color: red">*</span></label>
+                                        <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Lastname" required>
+                                        @error('lastname')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col">
+                                        <label for="firstname" class="form-label">First Name<span style="color: red">*</span></label>
+                                        <input type="text" name="firstname" class="form-control" id="firstname" placeholder="Firstname" required>
+                                        @error('firstname')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col">
+                                        <label for="middlename" class="form-label">Middle Name<span style="color: red">*</span></label>
+                                        <input type="text" name="middlename" class="form-control" id="middlename" placeholder="Middlename" required>
+                                        @error('middlename')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
-                                
-                                <div class="mb-3">
-                                    <label for="firstname" class="form-label">First Name<span style="color: red">*</span></label>
-                                    <input type="text" name="firstname" class="form-control" id="firstname" placeholder="Firstname" required>
-                                    @error('firstname')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                
-                                <div class="mb-3">
-                                    <label for="middlename" class="form-label">Middle Name<span style="color: red">*</span></label>
-                                    <input type="text" name="middlename" class="form-control" id="middlename" placeholder="Middlename" required>
-                                    @error('middlename')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                            </div>
 
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email Address<span style="color: red">*</span></label>
@@ -115,34 +121,43 @@
                                 </div>
                                 
                                 <div class="mb-3">
-                                <label for="password" class="form-label">Password<span style="color: red">*</span></label>
-                                <div class="input-group">
-                                    <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
-                                    <button class="btn btn-outline-secondary toggle-password" type="button">
-                                        <i class="far fa-eye"></i>
-                                    </button>
+                                    <div class="row">
+                                        <div class="col">
+                                            <label for="password" class="form-label">Password<span style="color: red">*</span></label>
+                                            <div class="input-group">
+                                                <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+                                                <button class="btn btn-outline-secondary toggle-password" type="button">
+                                                    <i class="far fa-eye"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <label for="password_confirmation" class="form-label">Confirm Password<span style="color: red">*</span></label>
+                                            <div class="input-group">
+                                                <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Confirm Password" required>
+                                                <button class="btn btn-outline-secondary toggle-password" type="button">
+                                                    <i class="far fa-eye"></i>
+                                                </button>
+                                            </div>
+                                            <div id="confirmPasswordError" class="invalid-feedback"></div><!-- Add a div to display error message -->
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="mb-3">
-                                <label for="password_confirmation" class="form-label">Confirm Password<span style="color: red">*</span></label>
-                                <div class="input-group">
-                                    <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Confirm Password" required>
-                                    <button class="btn btn-outline-secondary toggle-password" type="button">
-                                        <i class="far fa-eye"></i>
-                                    </button>
-                                </div>
                                 <div id="confirmPasswordError" class="invalid-feedback"></div><!-- Add a div to display error message -->
                             </div>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert" id="errorAlert" style="display: none;">
+                                <strong>Error:</strong> Please fill in all required fields and make sure the passwords match.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
                                                         
-                                <div class="button-position">
-                                    <div class="button-color">
-                                        <button class="btn btn-success" style="background-color: rgb(12, 75, 5);">Register</button>
-                                    </div>
+                            <div class="button-position">
+                                <div class="button-color">
+                                    <button id="registerBtn" class="btn btn-success" style="background-color: rgb(12, 75, 5);">Register</button>
+                                </div>
                                     <div class="text-center mt-2"> <!-- Added margin-top to separate the links from the button -->
-                                    <br>
-                                        <p class="form-label">Already have an account? <a href="{{ route('login') }}" style="color: rgb(255, 203, 0);">Login here</a></p>
                                     </div>
+                                    <p class="form-label">Already have an account? <a href="{{ route('login') }}" style="color: rgb(255, 203, 0);">Login here</a></p>
                                 </div>
                             </form>
                         </div>
@@ -152,12 +167,16 @@
         </div>
     </div>   
 
+    <div class="foreground-container">
+        <img src="{{asset('images/mmsu2.png')}}" style="width: 1350px;">
+    </div>
+
     <footer class="footerdesign">
     <div id="">
             <table>
                 <tr>
                     <td>
-                    <img src="{{ asset('images/QA_Logo.png') }}" alt="mmsulogo" id="logo" style="width: 80px; height:80px; margin-top:10px;">
+                    <img src="{{ asset('images/QA_Logo.png') }}" alt="mmsulogo" id="logo" style="width: 70px; height:70px; margin-top:10px;">
                     </td>
                     <td>
                         <div class="text-container">
@@ -176,7 +195,7 @@
                             <td style="text-align: right;">
                                 <div class="position">
                                 <div class="footerright1">Contact Us!</div>
-                                <div class="footerright2"><img src ="{{asset('images/telephone.png')}}" style="width: 30px; height:20px; margin-right:10px;" >Local 1112</div>
+                                <div class="footerright2"><img src ="{{asset('images/telephone.png')}}" style="width: 30px; height:25px; margin-right:10px;" >Local 1112</div>
                                 <div class="footerright3"><img src ="{{asset('images/email.png')}}" style="width: 30px; height:25px; margin-right:10px;" >quality-assurance@mmsu.edu.ph</div>
                                 </div>
                             </td>
@@ -193,6 +212,52 @@
 
 
 <script>
+    let alertDisplayed = false;
+
+    document.getElementById('registerBtn').addEventListener('click', function(event) {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+
+        // Validate the password fields match
+        const passwordInput = document.querySelector('#password');
+        const confirmPasswordInput = document.querySelector('#password_confirmation');
+        if (passwordInput.value !== confirmPasswordInput.value) {
+            displayErrorAlert("Passwords do not match.");
+            return;
+        }
+
+        // Validate all required fields are filled
+        const requiredFields = ['department', 'college', 'lastname', 'firstname', 'middlename', 'email', 'password', 'password_confirmation'];
+        for (const field of requiredFields) {
+            const input = document.querySelector(`#${field}`);
+            if (!input.value.trim()) {
+                displayErrorAlert("Please fill in all required fields.");
+                return;
+            }
+        }
+
+        // If all validations passed, submit the form
+        document.querySelector('form').submit();
+    });
+
+    function displayErrorAlert(message) {
+        if (!alertDisplayed) {
+            const errorAlert = document.getElementById('errorAlert');
+            errorAlert.querySelector('strong').textContent = "Error: " + message;
+            errorAlert.style.display = 'block';
+            alertDisplayed = true;
+        }
+    }
+
+    // Reset the alertDisplayed flag when the password fields change
+    document.querySelector('#password').addEventListener('input', function() {
+        alertDisplayed = false;
+    });
+
+    document.querySelector('#password_confirmation').addEventListener('input', function() {
+        alertDisplayed = false;
+    });
+
     function validatePassword() {
         const passwordInput = document.querySelector('#password');
         const confirmPasswordInput = document.querySelector('#password_confirmation');

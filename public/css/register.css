@@ -1,37 +1,43 @@
+body {
+    background-image: url('public/images/mmsu2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 #header {
     background-color: rgb(12, 75, 5);
     width: auto;
-    height: 95px;
+    height: 85px;
     margin: 0px;
     padding: 0px;
-    border-bottom: 3px solid rgb(255, 203, 0);
-    border-top: 3px solid rgb(255, 203, 0);
+    border-bottom: 2.5px solid rgb(255, 203, 0);
+    border-top: 2.5px solid rgb(255, 203, 0);
 }
 #logo {
-    width: 85px;
-    height: 85px;
+    width: 75px;
+    height: 75px;
     margin: 2px 10px 10px 10px;
     
-
 }
 
 .text-container {
-    margin-left: 10px; /* Adjust the margin as needed to separate the logo and text */
+    margin-left: 4px; /* Adjust the margin as needed to separate the logo and text */
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
 }
 
 .text-row {
     font-family: 'Garamond';
     color: white;
     text-transform: uppercase;
+    font-size: 13px;
 }
 
 .text-row2 {
     font-family: 'Garamond', Times, serif;
     color: white;
-    font-size: 25px;
+    font-size: 23px;
     
 }
 
@@ -39,13 +45,14 @@
     font-family: 'Garamond', Times, serif;
     color: white;
     text-transform: uppercase;
+    font-size: 13px;
     
 }
 
 .logo-container {
     /* Adjust position to move the logo to the top right corner */
     position: absolute;
-        top: 16px;
+        top: 12px;
         right: 10px;
         margin: 2px 10px 10px 10px;
         font-size: 30px;
@@ -68,7 +75,7 @@ object-fit: cover; /* Ensure the image covers the entire circle */
 }
 
 .layout {
-padding-top: 65px;
+padding-top: 14px;
 padding-bottom: 65px;
 }
 
@@ -113,10 +120,43 @@ position: absolute;
     font-size: 18px; 
 }
 .position {
-    margin-top:1035px;
+    margin-top:642px;
 }
 
 .button-position { 
     text-align: center;
 }
+
+.card {
+    box-shadow: 5px 5px 5px rgba(0.3, 0.3, 0.3, 0.3);
+ /* Add some padding to the card content */
+}
+
+.form-label {
+    font-size: 13px; /* Reduce the font size of the form labels */
+}
+
+.form-control {
+    font-size: 14px; /* Reduce the font size of the input fields */
+    padding: 3px; /* Adjust the padding around the input fields */
+}
+
+.form-select {
+    font-size: 14px; /* Reduce the font size of the input fields */
+    padding: 3px; /* Adjust the padding around the input fields */
+}
+
+.btn {
+    padding: 4px 8px; /* Adjust the padding of the buttons */
+    font-size: 14px; /* Reduce the font size of the buttons */
+}
+
+.foreground-container {
+    margin-top: -350px;
+    background-position: bottom;
+    background-position: auto;
+}
+
+
+
 

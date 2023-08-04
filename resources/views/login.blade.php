@@ -49,12 +49,14 @@
                 </td>
             </tr>
             </table>
-
+            <div class="title">
+            <h2 style="font-family: Garamond"><b>Login Now</b></h2>
+            </div>
 <div class="layout">
     <div class="row justify-content-center">
         <div class="col-lg-4">
             <div class="card">
-                
+            
             <div class="card-body">
                     @if(Session::has('error'))
                         <div class="alert alert-danger" role="alert">
@@ -103,12 +105,16 @@
     </div>
 </div>
 
+    <div class="foreground-container">
+        <img src="{{asset('images/mmsu2.png')}}" style="width: 1350px;">
+    </div>
+
 <footer class="footerdesign">
     <div id="">
             <table>
                 <tr>
                     <td>
-                    <img src="{{ asset('images/QA_Logo.png') }}" alt="mmsulogo" id="logo" style="width: 80px; height:80px; margin-top:10px;">
+                    <img src="{{ asset('images/QA_Logo.png') }}" alt="mmsulogo" id="logo" style="width: 70px; height:70px; margin-top:10px;">
                     </td>
                     <td>
                         <div class="text-container">
