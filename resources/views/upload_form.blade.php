@@ -50,49 +50,64 @@
         </nav>
     </header>
      
-    <div class="container">
-    <form action="{{ route('upload') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <!-- Add your form fields here -->
-        <div>
-        <h2>Upload Document</h2>
-            
-            <label for="programcourse">Program Course: </label>
-            <input type="text" name="programcourse" id="programcourse" placeholder="Bachelor of Science in ...">
-            <br>
+<div class="container">
+    <div class="col-lg-7">
 
-            <label for="typeofvisit">Type of Visit: </label>
-            <input type="text" name="typeofvisit" id="typeofvisit" placeholder="4th Survey - Phase 2">
-            <br>
+            @if (Session::has('success'))
+                <div class="alert alert-success">
+                    {{ Session::get('success') }}
+                </div>
+                @endif
 
-            <label for="dateofvisit">Date of Visit: </label>
-            <input type="text" name="dateofvisit" id="dateofvisit" placeholder="November 30 - December 4, 2020">
-            <br>
+            <form action="{{ route('upload') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+            <!-- Add your form fields here -->
+            <div>
+            <h2 style="font-family: Garamond; text-align: center">Upload Document</h2>
+                
+                <label for="programcourse">Program Course: </label>
+                <input type="text" name="programcourse" id="programcourse" placeholder="Bachelor of Science in ..." required class="form-control">
+                
 
-            <label for="award">Award: </label>
-            <input type="text" name="award" id="award" placeholder="Level III Re-accredited">
-            <br>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="typeofvisit">Type of Visit: </label>
+                        <input type="text" name="typeofvisit" id="typeofvisit" placeholder="4th Survey - Phase 2" required class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="dateofvisit">Date of Visit: </label>
+                        <input type="text" name="dateofvisit" id="dateofvisit" placeholder="November 30 - December 4, 2020" required class="form-control">
+                    </div>
+                </div>
 
-            <label for="validityperiod">Validity Period: </label>
-            <input type="text" name="validityperiod" id="validityperiod" placeholder="March 2023 - February 2024">
-            <br>
+                <label for="award">Award: </label>
+                <input type="text" name="award" id="award" placeholder="Level III Re-accredited" required class="form-control">
+                
 
-            <label for="grandmean">Grand Mean: </label>
-            <input type="text" name="grandmean" id="grandmean" placeholder="4.62">
-            <br>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="validityperiod">Validity Period: </label>
+                        <input type="text" name="validityperiod" id="validityperiod" placeholder="March 2023 - February 2024" required class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="grandmean">Grand Mean: </label>
+                        <input type="text" name="grandmean" id="grandmean" placeholder="4.62" required class="form-control">
+                    </div>
+                </div>
 
-            <label for="document">Select Document:</label>
-            <input type="file" name="document" id="document">
-            <br>
+                <label for="document">Select Document (PDF only):</label>
+                <input type="file" name="document" id="document" accept=".pdf" required class="form-control2">
+                
 
-            <div class="position">
-            <input type="submit" name="upload" value="Upload Now!">
-            <a href="/home"><button type="button" class="btn btn-sm btn-secondary">Cancel</button></a>
-            </div>
-        </div>
-    </form>
-
+                <div class="submitposition">
+                    <input type="submit" class="btn btn-sm btn-primary" name="upload" value="Upload Now!">
+                    <a href="/home"><button type="button" class="btn btn-sm btn-secondary">Cancel</button></a>
+                </div>
+                </div>
+            </form>
+    
     </div>
+</div>
 </body>
 </html>
 

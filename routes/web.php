@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\AccountSettingsController;
+use App\Http\Controllers\DocumentController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,13 +32,14 @@ Route::get('/login', [AuthController::class, 'login'])->name('login'); //shows t
 
 Route::post('/login', [AuthController::class, 'loginPost'])->name('login'); //login process
 
-Route::get('home', [HomeController::class, 'home']);
-
 Route::get('/home', [HomeController::class, 'home']);
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index1'])->name('home');
 
 Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/upload', [UploadController::class, 'showUploadPage'])->name('upload');
-
 Route::get('/account_settings', [AccountSettingsController::class, 'index'])->name('account_settings');
 Route::post('/update_account', [AccountSettingsController::class, 'update'])->name('update_account');
+
+Route::get('/upload', [DocumentController::class, 'uploadForm'])->name('uploadForm');
+Route::post('/upload', [DocumentController::class, 'upload'])->name('upload');
