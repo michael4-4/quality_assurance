@@ -94,7 +94,8 @@
 
     .position {
         text-align: left;
-        margin-left: -90px;
+        margin-top: -4px;
+        margin-left: -107px;
     }
 
     .dropdown-menu {
@@ -171,13 +172,12 @@ nav ul li a img {
         background-position: bottom;
         background-position: auto;
     }
-
+/*
     body {
         background-image: url({{ asset('public/images/mmsu2.png') }});
-        background-size: cover; /* Optional: Adjusts how the image fits in the background */
-        /* Other background properties like background-repeat, background-position can also be used here */
+        background-size: cover;
       }
-
-    #modalcss {
+*/
+   /* . {
         margin-left: 60px;
     }

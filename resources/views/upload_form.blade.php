@@ -42,6 +42,7 @@
             <li><a href="#" class="icon" onclick="toggleDropdown(event)"><i class="fas fa-user"></i>Profile<img src="{{ asset('images/profile-removebg-preview (1).png') }}" alt="Profile Image"></a>
                 <!-- Dropdown menu for "Profile" link -->
                 <ul class="dropdown-menu" id="profileDropdown">
+                    <li><a href="/profile">View Profile</a></li> <!-- Added line for View Profile -->
                     <li><a href="/account_settings">Edit Account</a></li>
                     <li><a href="#" onclick="logout()">Logout</a></li>
                 </ul>

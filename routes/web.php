@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\AccountSettingsController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\ProfileController;
 
 
 /*
@@ -43,3 +44,7 @@ Route::post('/update_account', [AccountSettingsController::class, 'update'])->na
 
 Route::get('/upload', [DocumentController::class, 'uploadForm'])->name('uploadForm');
 Route::post('/upload', [DocumentController::class, 'upload'])->name('upload');
+
+Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
+Route::post('/upload-profile-image', [ProfileController::class, 'uploadProfileImage'])->name('uploadProfileImage');
+Route::delete('/delete-profile-image', [ProfileController::class, 'deleteProfileImage'])->name('deleteProfileImage');

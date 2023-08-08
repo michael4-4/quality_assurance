@@ -50,6 +50,7 @@
             <!--<li><a href="#" class="icon" onclick="toggleDropdown(event)"><i class="fas fa-user"></i><img src="{{ asset('images/profile-removebg-preview (1).png') }}" alt="Profile Image"></a>-->
                 <!-- Dropdown menu for "Profile" link -->
                 <ul class="dropdown-menu" id="profileDropdown">
+                    <li><a href="/profile">View Profile</a></li> <!-- Added line for View Profile -->
                     <li><a href="/account_settings">Edit Account</a></li>
                     <li><a href="#" onclick="logout()">Logout</a></li>
                 </ul>
@@ -61,18 +62,18 @@
     <!-- Main content section -->
     <div class="container"><br>
         <h3 class="position">Welcome {{ Auth::user()->firstname }}!</h3>
-        @if ($successMessage)
+        @if (isset($successMessage))
         <div class="alert alert-success alert-dismissible fade show mx-auto" role="alert" style="max-width: 400px; margin-top: -50px; text-align:center">
             {{ $successMessage }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-    @endif
+        @endif
     </div>
 
  <br>
 
  
-
+ @if ($documents->count() > 0)
  <div class="row">
  @foreach ($documents as $document)
     <div class="col-md-4">
@@ -80,30 +81,33 @@
         <embed src="{{ asset('storage/documents/' . $document->document_path) }}" type="application/pdf" width="50%" height="300">
         <br>
         <div class="container">
-            <a href="{{ asset('storage/documents/' . $document->document_path) }}">View PDF Preview</a>
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal{{ $document->id }}">View Details</button>
+            <a href="{{ asset('storage/documents/' . $document->document_path) }}" class="btn btn-danger btn-sm">View PDF</a>
+            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal{{ $document->id }}">View Details</button>
 
             <!-- Modal -->
             <div class="modal fade" id="myModal{{ $document->id }}" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header" id="modalcss">
-                            <h4 class="modal-title">Details</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Summary Details</h4>
+                        <button type="button" class="close" data-dismiss="modal" style="position: absolute; top: 2rem; right: 2rem;">&times;</button>
+                    </div>
                         <div class="modal-body">
                             <!-- Center the details -->
-                            <div style="text-align: center;">
-                                <p>Type of Visit: {{ $document->type_of_visit }}</p>
-                                <p>Date of Visit: {{ $document->date_of_visit }}</p>
-                                <p>Award: {{ $document->award }}</p>
-                                <p>Validity Period: {{ $document->validity_period }}</p>
-                                <p>Grand Mean: {{ $document->grand_mean }}</p>
-                                <p>Document Path: {{ $document->document_path }}</p>
-                            </div>
+                            <div style="margin-top:10px;">
+                            <p><strong>Program Course:</strong> {{ $document->program_course }}</p>
+                            <p><strong>Type of Visit:</strong> {{ $document->type_of_visit }}</p>
+                            <p><strong>Date of Visit:</strong> {{ $document->date_of_visit }}</p>
+                            <p><strong>Award:</strong> {{ $document->award }}</p>
+                            <p><strong>Validity Period:</strong> {{ $document->validity_period }}</p>
+                            <p><strong>Grand Mean:</strong> {{ $document->grand_mean }}</p>
+                            <p><strong>Document Path:</strong> {{ $document->document_path }}</p>
                         </div>
+                    </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <div class="container text-center">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -112,7 +116,9 @@
     </div>
 @endforeach
     </div>
-
+    @else
+        <p class="text-center"><i>No documents uploaded yet.</i></p>
+    @endif
 
    
 </body>
