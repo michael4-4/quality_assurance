@@ -39,6 +39,7 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+            'remember' => true, // Set this to true
         ],
     ],
 
@@ -112,4 +113,9 @@ return [
 
     'password_timeout' => 10800,
 
+    'remember_email' => [
+        'expire' => 480, // 8 hours in minutes
+    ],
+
+    'remember' => 'remember_me',
 ];

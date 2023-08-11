@@ -42,9 +42,13 @@ Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/account_settings', [AccountSettingsController::class, 'index'])->name('account_settings');
 Route::post('/update_account', [AccountSettingsController::class, 'update'])->name('update_account');
 
-Route::get('/upload', [DocumentController::class, 'uploadForm'])->name('uploadForm');
-Route::post('/upload', [DocumentController::class, 'upload'])->name('upload');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/upload', [DocumentController::class, 'uploadForm'])->name('upload.form');
+    Route::post('/upload', [DocumentController::class, 'upload'])->name('upload');
+});
 
-Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
-Route::post('/upload-profile-image', [ProfileController::class, 'uploadProfileImage'])->name('uploadProfileImage');
+Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
+Route::post('/update-profile-image', [ProfileController::class, 'updateProfileImage'])->name('updateProfileImage');
+Route::post('/edit-profile-image', [ProfileController::class, 'editProfileImage'])->name('editProfileImage');
 Route::delete('/delete-profile-image', [ProfileController::class, 'deleteProfileImage'])->name('deleteProfileImage');
+

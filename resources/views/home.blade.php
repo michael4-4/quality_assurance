@@ -15,11 +15,23 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-
+  <script>
+        // Wait for a few seconds and then remove the notification
+        setTimeout(function() {
+            var notification = document.querySelector('.centered-notification');
+            if (notification) {
+                notification.remove();
+            }
+        }, 6000); // Remove after 5 seconds
+</script>
 
 </head>
 <body>
+        @if(session('alert'))
+            <div class="centered-notification">
+                {{ session('alert') }}
+            </div>
+        @endif
 
 <div id="header">
             <table>
@@ -59,30 +71,179 @@
         </nav>
     </header>
 
-    <!-- Main content section -->
-    <div class="container"><br>
-        <h3 class="position">Welcome {{ Auth::user()->firstname }}!</h3>
-        @if (isset($successMessage))
-        <div class="alert alert-success alert-dismissible fade show mx-auto" role="alert" style="max-width: 400px; margin-top: -50px; text-align:center">
-            {{ $successMessage }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+<!-- Main content section -->
+<div class="container">
+    <br>
+    @auth
+    <h3 class="position">Welcome {{ Auth::user()->firstname }}!</h3>
+    
+    <!-- Create a search form with four dropdowns -->
+    <form action="/search" method="GET" class="row">
+        <div class="col-md-3">
+            <div class="input-group">
+                <label for="programCourse" class="input-group-text">Program Course:</label>
+                <select class="form-control" id="programCourse" name="programCourse">
+                    <!-- Options for Program Course -->
+                    <option value="" disabled selected>Select Program Course</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                    <option value="option4">Option 4</option>
+                    <option value="option5">Option 5</option>
+                    <option value="option6">Option 6</option>
+                    <option value="option7">Option 7</option>
+                    <option value="option8">Option 8</option>
+                    <option value="option9">Option 9</option>
+                    <option value="option10">Option 10</option>
+                    <option value="option11">Option 11</option>
+                    <option value="option12">Option 12</option>
+                    <option value="option13">Option 13</option>
+                    <option value="option14">Option 14</option>
+                    <option value="option15">Option 15</option>
+                    <option value="option16">Option 16</option>
+                    <option value="option17">Option 17</option>
+                    <option value="option18">Option 18</option>
+                    <option value="option19">Option 19</option>
+                    <option value="option20">Option 20</option>
+                    <!-- ... and so on ... -->
+                </select>
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-chevron-down"></i></span>
+                </div>
+            </div>
         </div>
-        @endif
-    </div>
+        <div class="col-md-3">
+            <!-- Repeat the above structure for the other three dropdowns -->
+            <div class="input-group">
+                <label for="department" class="input-group-text">Department:</label>
+                <select class="form-control" id="department" name="department">
+                    <!-- Options for Department -->
+                    <option value="" disabled selected>Select Department</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                    <option value="option4">Option 4</option>
+                    <option value="option5">Option 5</option>
+                    <option value="option6">Option 6</option>
+                    <option value="option7">Option 7</option>
+                    <option value="option8">Option 8</option>
+                    <option value="option9">Option 9</option>
+                    <option value="option10">Option 10</option>
+                    <option value="option11">Option 11</option>
+                    <option value="option12">Option 12</option>
+                    <option value="option13">Option 13</option>
+                    <option value="option14">Option 14</option>
+                    <option value="option15">Option 15</option>
+                    <option value="option16">Option 16</option>
+                    <option value="option17">Option 17</option>
+                    <option value="option18">Option 18</option>
+                    <option value="option19">Option 19</option>
+                    <option value="option20">Option 20</option>
+                    <!-- ... and so on ... -->
+                </select>
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-chevron-down"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="input-group">
+                <label for="validityPeriod" class="input-group-text">Validity Period:</label>
+                <select class="form-control" id="validityPeriod" name="validityPeriod">
+                    <!-- Options for Validity Period -->
+                    <option value="" disabled selected>Select Validity Period</option>
+                <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                    <option value="option4">Option 4</option>
+                    <option value="option5">Option 5</option>
+                    <option value="option6">Option 6</option>
+                    <option value="option7">Option 7</option>
+                    <option value="option8">Option 8</option>
+                    <option value="option9">Option 9</option>
+                    <option value="option10">Option 10</option>
+                    <option value="option11">Option 11</option>
+                    <option value="option12">Option 12</option>
+                    <option value="option13">Option 13</option>
+                    <option value="option14">Option 14</option>
+                    <option value="option15">Option 15</option>
+                    <option value="option16">Option 16</option>
+                    <option value="option17">Option 17</option>
+                    <option value="option18">Option 18</option>
+                    <option value="option19">Option 19</option>
+                    <option value="option20">Option 20</option>
+                    <!-- ... and so on ... -->
+                </select>
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-chevron-down"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="input-group">
+                <label for="grandMean" class="input-group-text">Grand Mean:</label>
+                <select class="form-control" id="grandMean" name="grandMean">
+                    <!-- Options for Grand Mean -->
+                    <option value="" disabled selected>Select Grand Mean</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                    <option value="option4">Option 4</option>
+                    <option value="option5">Option 5</option>
+                    <option value="option6">Option 6</option>
+                    <option value="option7">Option 7</option>
+                    <option value="option8">Option 8</option>
+                    <option value="option9">Option 9</option>
+                    <option value="option10">Option 10</option>
+                    <option value="option11">Option 11</option>
+                    <option value="option12">Option 12</option>
+                    <option value="option13">Option 13</option>
+                    <option value="option14">Option 14</option>
+                    <option value="option15">Option 15</option>
+                    <option value="option16">Option 16</option>
+                    <option value="option17">Option 17</option>
+                    <option value="option18">Option 18</option>
+                    <option value="option19">Option 19</option>
+                    <option value="option20">Option 20</option>
+                    <!-- ... and so on ... -->
+                </select>
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-chevron-down"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+    
+    <!-- ... existing code for success message ... -->
+    @endif
+</div>
 
  <br>
 
  
  @if ($documents->count() > 0)
- <div class="row">
- @foreach ($documents as $document)
-    <div class="col-md-4">
-        <h4>{{ $document->program_course }}</h4>
+    <div class="row">
+
+        @foreach ($documents as $document)
+        <div class="col-md-4">
+            <h5>{{ $document->program_course }}</h5>
+            
+            @if ($document->uploader)
+                <p>Uploaded by: <b>{{ $document->uploader->firstname}} {{ $document->uploader->middlename }} {{ $document->uploader->lastname }}</b></p>
+            @else
+                <p>Uploader not found for this document.</p>
+            @endif
+            
         <embed src="{{ asset('storage/documents/' . $document->document_path) }}" type="application/pdf" width="50%" height="300">
         <br>
         <div class="container">
             <a href="{{ asset('storage/documents/' . $document->document_path) }}" class="btn btn-danger btn-sm">View PDF</a>
             <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal{{ $document->id }}">View Details</button>
+
 
             <!-- Modal -->
             <div class="modal fade" id="myModal{{ $document->id }}" role="dialog">
@@ -117,7 +278,7 @@
 @endforeach
     </div>
     @else
-        <p class="text-center"><i>No documents uploaded yet.</i></p>
+        <p class="text-center"><i>--No documents uploaded yet.--</i></p>
     @endif
 
    

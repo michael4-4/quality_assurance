@@ -10,6 +10,7 @@
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" integrity="sha384-Nsz6oApLgCYeKB4gt3KON1E5yZgx4j7lX0kNlgh1lRV58LyXX4Pe+0WqFdaJeCUV" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.16.0/font/bootstrap-icons.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{{asset('css/profile.css')}}">
 </head>
@@ -56,35 +57,55 @@
     <div class="row justify-content-center"> <!-- Center-align the row -->
         <div class="col-md-16">
 
-        <form method="POST" action="{{ route('uploadProfileImage') }}" enctype="multipart/form-data">
-    @csrf
-
-        <label for="profileImage">Profile Image:</label>
-        <input type="file" id="profileImage" name="profileImage" accept="image/*">
-        <button type="submit" class="btn btn-primary">Upload</button>
     
-</form>
-            @if (Auth::user()->profile_image)
-                <div class="circle-profile-image">
-                    <img src="{{ asset('storage/' . Auth::user()->profile_image) }}">
-                    <form method="POST" action="{{ route('deleteProfileImage') }}" class="delete-profile-image-form">
-                        @csrf
-                        @method('DELETE') <!-- Add this line -->
-                        <button type="submit" class="btn btn-danger btn-sm">Delete Image</button>
-                    </form>
-                </div>
-            @endif
-                                     
-            <form>
+        <form action="{{ route('editProfileImage') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <div class="profile-image-container">
+        <div class="circular-border">
+            <img src="{{ asset('storage/' . $user->profile_image) }}" alt="" class="profile-image" id="profileImagePreview">
+            <label for="profileImageInput" class="add-icon">
+                <i class="bi bi-plus-circle-fill"></i>
+            </label>
+            <label for="profileImageInput" class="edit-icon">
+                <i class="bi bi-pencil-fill"></i>
+            </label>
+        </div>
+    </div>
+    <input type="file" id="profileImageInput" name="profileImage" class="sr-only" onchange="showImagePreview()">
+    
+    <!-- Hidden input for image deletion -->
+    <input type="hidden" id="deleteProfileImage" name="deleteProfileImage" value="0">
+
+    <button style="background-color: #f0ad4e; border-color: #f0ad4e;" type="button" class="btn btn-warning edit-button" onclick="showEditConfirmation()">Edit Image</button>
+
+    <button type="submit" class="btn btn-danger delete-button" onclick="showDeleteConfirmation()">Delete Image</button>
+    <button type="submit" class="btn btn-info save-button">Save Image <i class="bi bi-plus-circle-fill"></i></button>
+
+
+
+            
                 <div class="form-group">
-                <h3 class="text-center" style="font-family: Garamond">Your Profile Information</h3>
-                    <label for="department">Department:</label>
-                    <input type="text" id="department" name="department" class="form-control" value="{{ Auth::user()->department }}" disabled>
+                    <h3 class="text-center" style="font-family: Garamond">Your Profile Information</h3>
+
+                    <div class="row">
+                            <div class="col">
+                                <label for="role">Role:</label>
+                                <input type="text" id="role" name="role" class="form-control" value="{{ Auth::user()->role }}" disabled>
+                            </div>
+                            
+                            <div class="col">
+                                <label for="department">Department:</label>
+                                <input type="text" id="department" name="department" class="form-control" value="{{ Auth::user()->department }}" disabled>
+                            </div>
+
+                            <div class="col">
+                                <label for="college">College:</label>
+                                <input type="text" id="college" name="college" class="form-control" value="{{ Auth::user()->college }}" disabled>
+                            </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="college">College:</label>
-                    <input type="text" id="college" name="college" class="form-control" value="{{ Auth::user()->college }}" disabled>
-                </div>
+
+                
                 <div class="form-group row">
                     <div class="col">
                         <label for="lastname">Last Name:</label>
@@ -115,48 +136,39 @@
 
 
 <script>
-    // Add an event listener to the form submission
-    document.addEventListener('submit', function (event) {
-        const form = event.target;
-        if (form.classList.contains('delete-profile-image-form')) {
-            event.preventDefault(); // Prevent the default form submission
+    function showDeleteConfirmation() {
+    const confirmation = confirm("Are you sure you want to delete the image?");
+    if (confirmation) {
+        document.getElementById('deleteProfileImage').value = '1';
+    } else {
+        document.getElementById('deleteProfileImage').value = '0';
+    }
+}
 
-            // Confirm with the user before deleting the image
-            const confirmation = confirm('Are you sure you want to delete your profile image?');
-            if (confirmation) {
-                // Change the form method to DELETE and submit it
-                form.method = 'POST';
-                form.action = '{{ route("deleteProfileImage") }}';
-                const methodInput = document.createElement('input');
-                methodInput.setAttribute('type', 'hidden');
-                methodInput.setAttribute('name', '_method');
-                methodInput.setAttribute('value', 'DELETE');
-                form.appendChild(methodInput);
-                form.submit();
-            }
-        }
-    });
 
-    const profileImage = document.getElementById('profileImage');
-    const imageInput = document.getElementById('imageInput');
+    function showEditConfirmation() {
+    const confirmEdit = window.confirm("Do you want to edit the profile image?");
+    if (confirmEdit) {
+        document.getElementById('profileImageInput').click(); // Trigger the file input click
+    }
+}
 
-    profileImage.addEventListener('click', () => {
-        imageInput.click();
-    });
+    function showImagePreview() {
+        const input = document.getElementById('profileImageInput');
+        const preview = document.getElementById('profileImagePreview');
+        const circularBorderImage = document.getElementById('circularBorderImage');
 
-    imageInput.addEventListener('change', (event) => {
-        const file = event.target.files[0];
-        if (file) {
+        if (input.files && input.files[0]) {
             const reader = new FileReader();
-            reader.onload = (e) => {
-                profileImage.style.backgroundImage = `url('${e.target.result}')`;
-                profileImage.style.backgroundSize = 'cover';
+            
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                circularBorderImage.src = e.target.result;
             };
-            reader.readAsDataURL(file);
+            
+            reader.readAsDataURL(input.files[0]);
         }
-    });
-
-
+    }
     // Function to toggle the visibility of the profile dropdown menu
     function toggleDropdown(event) {
         event.preventDefault();
@@ -185,4 +197,5 @@
             }
         }
     };
+
 </script>

@@ -9,13 +9,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <!-- toggle -->
     <!-- Font Awesome -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="{{asset('css/login.css')}}">
+    <script>
+        // Wait for a few seconds and then remove the notification
+        setTimeout(function() {
+            var notification = document.querySelector('.centered-notification');
+            if (notification) {
+                notification.remove();
+            }
+        }, 10000); // Remove after 5 seconds
+    </script>
+    
+
     </head>
     <body>  
+        @if(session('alert'))
+        <div class="centered-notification">
+            {{ session('alert') }}
+        </div>
+    @endif
             <div id="header">
                 <table>
                     <tr>
@@ -52,38 +69,44 @@
             <div class="title">
             <h2 style="font-family: Garamond"><b>Login Now</b></h2>
             </div>
+
+            
 <div class="layout">
     <div class="row justify-content-center">
         <div class="col-lg-4">
             <div class="card">
             
             <div class="card-body">
+                       
                     @if(Session::has('error'))
-                        <div class="alert alert-danger" role="alert">
+                        <div class="alert alert-danger" role="alert" style="max-width: 400px; text-align:center; font-size: 15px;" >
                             {{ Session::get('error') }}
-                        </div>
-                    @endif
-                    @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
                         </div>
                     @endif
                     <form action="{{ route('login') }}" method="POST">
                         @csrf
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email Address<span style="color: red">*</span></label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" required>
-                </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address<span style="color: red">*</span></label>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" required
+                            value="{{ session('remember_email') ?? old('email') }}" required>
+                        </div>
                 
                 <div class="mb-3">
                     <label for="password" class="form-label">Password<span style="color: red">*</span></label>
                     <div class="input-group">
                         <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+                            
                         <button class="btn btn-outline-secondary toggle-password" type="button">
                             <i class="far fa-eye"></i>
                         </button>
                     </div>
                 </div>
+
+                <div class="mb-3 form-check remember-checkbox">
+                    <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                    <label class="form-check-label" for="remember">Remember Me</label>
+                </div>
+                
 
                 <div class="button-position">
                     <div class="button-color">
@@ -105,9 +128,7 @@
     </div>
 </div>
 
-    <div class="foreground-container">
-        <img src="{{asset('images/mmsu2.png')}}" style="width: 1350px;">
-    </div>
+  
 
 <footer class="footerdesign">
     <div id="">
@@ -121,30 +142,21 @@
                             <div class="footertext"><img src ="{{asset('images/building.png')}}" style="width: 33px; height:25px; margin-right:7px; margin-left:-9px; margin-bottom:5px;" >Room 204 FEM Hall (Administration Building)</div>
                         </div>
                     </td>
+                    
+                    <td>
+                        <div class="contact-section">
+                        <div class="footerright1">Contact Us!</div>
+                        <div class="footerright2"><img src ="{{asset('images/telephone.png')}}" style="width: 30px; height:25px; margin-right:10px;" >Local 1112</div>
+                        <div class="footerright3"><img src ="{{asset('images/email.png')}}" style="width: 30px; height:25px; margin-right:10px;" >quality-assurance@mmsu.edu.ph</div>
+                        </div>
+                    </td>
+
                 </tr>
             </table>
-        </div>
 
-        <table>
-            <tr>
-                <td class="logo-container">
-                    <table>
-                        <tr>
-                            <td style="text-align: right;">
-                                <div class="position">
-                                <div class="footerright1">Contact Us!</div>
-                                <div class="footerright2"><img src ="{{asset('images/telephone.png')}}" style="width: 30px; height:20px; margin-right:10px;" >Local 1112</div>
-                                <div class="footerright3"><img src ="{{asset('images/email.png')}}" style="width: 30px; height:25px; margin-right:10px;" >quality-assurance@mmsu.edu.ph</div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
+    </div>
     </footer>
+    
 </body>
 </html>
 
@@ -158,4 +170,18 @@
         // Change the icon based on the input type
         togglePassword.querySelector('i').className = type === 'password' ? 'far fa-eye' : 'far fa-eye-slash';
     });
+
+    function adjustRememberMePosition() {
+        $('.alert').length ? $('.remember-checkbox').addClass('adjusted') : $('.remember-checkbox').removeClass('adjusted');
+    }
+
+    $(document).ready(function() {
+        adjustRememberMePosition(); // Call the function on document ready
+
+        // You can also call the function when an alert is shown/hidden
+        $('.alert').on('show.bs.alert hide.bs.alert', function() {
+            adjustRememberMePosition();
+        });
+    });
+
 </script>

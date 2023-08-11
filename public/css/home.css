@@ -1,4 +1,15 @@
     /* Custom CSS for the navigation bar */
+    body {
+        background-image: url('/images/opacitymmsu.png');
+        background-size: contain; /* Adjust this property */
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: bottom;
+        background-color: rgba(0, 0, 0, 0.5); /* Adjust the last value (0.5) for opacity */
+         /* Set text color for better contrast */
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
+
     #header {
         background-color: rgb(12, 75, 5);
         width: auto;
@@ -181,3 +192,31 @@ nav ul li a img {
    /* . {
         margin-left: 60px;
     }
+
+    /* Center the notification  for alert*/
+    /* Downward animation */
+@keyframes slideDown {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Centered notification with downward animation */
+.centered-notification {
+    position: fixed;
+    top: 2.8%;
+    left: 41%;
+    background-color: #4BB543;
+    color: white;
+    padding: 15px;
+    box-shadow: 0px 4px 8px rgba(0.5, 0.5, 0.5, 0.5);
+    border-radius: 25px;
+    z-index: 1000;
+    animation: slideDown 1.2s ease-in-out;
+    border-radius: 1px;
+}

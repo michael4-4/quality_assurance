@@ -12,9 +12,10 @@ return new class extends Migration
     public function up()
 {
     Schema::table('users', function (Blueprint $table) {
-        $table->string('profile_image')->nullable();
+        $table->string('profile_image')->nullable()->after('email'); // Adjust column position as needed
     });
 }
+
 
     /**
      * Reverse the migrations.

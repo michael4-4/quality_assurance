@@ -54,7 +54,7 @@
     <div class="container">
         <h3 id="positionedit" style="font-family: Garamond">Edit Account Information</h3>
         @if(Session::has('success'))
-                                <div class="alert alert-success" role="alert">
+                                <div class="alert alert-success" role="alert" style="text-align: center;">
                                     {{ Session::get('success') }}
                                 </div>
                             @endif 
@@ -65,7 +65,8 @@
             <select name="department" class="form-control form-control-sm" id="department" required>
                 <option value="" disabled>Select Department</option>
                 <option value="Quality Assurance" @if(Auth::user()->department === 'Quality Assurance') selected @endif>Quality Assurance</option>
-                <option value="Computing and Information Sciences" @if(Auth::user()->department === 'Computing and Information Sciences') selected @endif>Computing and Information Sciences</option>
+                <option value="Computer Sciences" @if(Auth::user()->department === 'Computer Science') selected @endif>Computer Science</option>
+                <option value="Information Technology" @if(Auth::user()->department === 'Information Technology') selected @endif>Information Technology</option>
                 <option value="Languages and Literature" @if(Auth::user()->department === 'Languages and Literature') selected @endif>Languages and Literature</option>
                 <option value="Physical Science" @if(Auth::user()->department === 'Physical Science') selected @endif>Physical Science</option>
                 <option value="Mathematics" @if(Auth::user()->department === 'Mathematics') selected @endif>Mathematics</option>
