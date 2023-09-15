@@ -1,8 +1,11 @@
 body {
-    background-image: url('public/images/mmsu2.png');
-    background-size: cover;
-    background-position: center;
+    background-image: url('/images/finalmmsu.png');
+    background-size: contain; /* Adjust this property */
     background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom;
+    color: white; /* Set text color for better contrast */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 #header {
     background-color: rgb(12, 75, 5);
@@ -37,7 +40,8 @@ body {
 .text-row2 {
     font-family: 'Garamond', Times, serif;
     color: white;
-    font-size: 23px;
+    font-size: 20px;
+    text-transform: uppercase;
     
 }
 
@@ -75,7 +79,7 @@ object-fit: cover; /* Ensure the image covers the entire circle */
 }
 
 .layout {
-padding-top: 14px;
+padding-top: 16px;
 padding-bottom: 65px;
 }
 
@@ -87,9 +91,14 @@ position: absolute;
 }
 
 .footerdesign {
+    bottom: 0;
+    left: 0;
+    width: 100%;
     background-color: rgb(12, 75, 5);
-    color:white;
-   
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    
 }
 
 .footertext {
@@ -98,6 +107,12 @@ position: absolute;
         font-size: 18px;
         margin-top:3px; 
     
+}
+.contact-section {
+    text-align: right;
+    
+    margin-left: 600px;
+
 }
 
 .footerright1 {
@@ -119,6 +134,7 @@ position: absolute;
     color: white;
     font-size: 18px; 
 }
+
 .position {
     margin-top:642px;
 }
@@ -128,9 +144,11 @@ position: absolute;
 }
 
 .card {
-    box-shadow: 5px 5px 5px rgba(0.3, 0.3, 0.3, 0.3);
+    box-shadow: 6px 6px 6px rgba(0.4, 0.4, 0.4, 0.4);
  /* Add some padding to the card content */
+ margin-bottom: 120px; /* Add margin to create space between form and footer */
 }
+
 
 .form-label {
     font-size: 13px; /* Reduce the font size of the form labels */
@@ -157,6 +175,161 @@ position: absolute;
     background-position: auto;
 }
 
+/* Weak password style */
+.weak {
+    border-color: #FF7F7F;
+}
+
+/* Medium password style */
+.medium {
+    border-color: #FFD700;
+}
+
+/* Strong password style */
+.strong {
+    border-color: #7FFF00;
+}
+
+.indicator {
+    position: absolute;
+    font-size: small;
+    margin-top: -10px;
+}
+
+#password {
+    transition: border-color 0.3s, box-shadow 0.3s; /* Apply transition to border color and box shadow */
+    border-width: 2px; /* Set border width */
+}
+
+#password.weak {
+    border-color: #FF6347; /* Red border color for weak passwords */
+    box-shadow: 0 0 5px #FF6347; /* Red box shadow for weak passwords */
+}
+
+#password.medium {
+    border-color: #FFA500; /* Orange border color for medium passwords */
+    box-shadow: 0 0 5px #FFA500; /* Orange box shadow for medium passwords */
+}
+
+#password.strong {
+    border-color: #2E8B57; /* Green border color for strong passwords */
+    box-shadow: 0 0 5px #2E8B57; /* Green box shadow for strong passwords */
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 5px #FF6347
+    }
+    50% {
+        box-shadow: 0 0 20px #FF6347, 0 0 10px #FF6347;
+    }
+}
+
+@keyframes gloww {
+    0%, 100% {
+        box-shadow: 0 0 5px #FFA500
+    }
+    50% {
+        box-shadow: 0 0 20px #FFA500, 0 0 10px #FFA500;
+    }
+}
+
+@keyframes glowww {
+    0%, 100% {
+        box-shadow: 0 0 5px #2E8B57
+    }
+    50% {
+        box-shadow: 0 0 20px #2E8B57, 0 0 10px #2E8B57;
+    }
+}
+
+.indicatorconfirmpassred { 
+    position: absolute;
+    font-size: small;
+    margin-top: 6px;
+    margin-left: 168px;
+
+}
+
+.indicatorconfirmpassgreen {
+    position: absolute;
+    font-size: small;
+    margin-top: 6px;
+    margin-left: 195px;
+
+}
+
+@keyframes glow-red {
+    0%, 100% {
+        color: red;
+        text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red;
+    }
+}
+
+@keyframes glow-green {
+    0%, 100% {
+        color: green;
+        text-shadow: 0 0 10px green, 0 0 20px green, 0 0 30px green;
+    }
+}
+
+.glow-red {
+    animation: glow-red 1.5s infinite alternate;
+}
+
+.glow-green {
+    animation: glow-green 1.5s infinite alternate;
+}
+
+.swal2-popup {
+    font-size: 16px !important;
+}
+
+/* Reduce the size of the title and text in the SweetAlert dialog */
+.swal2-title, .swal2-content {
+    font-size: 20px !important;
+}
+
+/* Reduce the padding inside the SweetAlert dialog */
+.swal2-popup .swal2-content {
+    padding: 12px;
+}
+
+/* Reduce the size of the buttons in the SweetAlert dialog */
+.swal2-styled {
+    padding: 6px 11px !important;
+    font-size: 16px !important;
+}
+
+/* Reduce the size of the input fields in the SweetAlert dialog */
+.swal2-input {
+    font-size: 16px !important;
+}
+
+.swal2-cancel {
+    margin-right: -4px !important; /* You can adjust this value as needed */
+    margin-left: 0px !important; /* Reset left margin to ensure proper alignment */
+}
+
+.swal2-confirm {
+    margin-right: 15px !important; /* You can adjust this value as needed */
+    margin-left: 0px !important; /* Reset left margin to ensure proper alignment */
+}
+
+.swal2-styled.swal2-confirm1 {
+    margin-right: -1px !important;
+    margin-left: 0px !important;
+}
+
+.swal2-styled.swal2-confirm2 {
+    margin-right: -1px !important;
+    margin-left: 0px !important;
+}
 
 
+.custom-error-message {
+    font-size: 13px;
+    position: absolute;
+
+}
 

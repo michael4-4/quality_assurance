@@ -12,8 +12,42 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <!-- Add your CSS and JS links here -->
     <link rel="stylesheet" href="{{asset('css/account_settings.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        // Wait for a few seconds and then remove the notification
+        setTimeout(function() {
+            var notification = document.querySelector('.centered-notification');
+            if (notification) {
+                notification.remove();
+            }
+        }, 7000); // Remove after 5 seconds
+    </script>
+    <script>
+        // Wait for a few seconds and then remove the notification
+        setTimeout(function() {
+            var notification = document.querySelector('.centered-notification1');
+            if (notification) {
+                notification.remove();
+            }
+        }, 7000); // Remove after 5 seconds
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
 </head>
 <body>
+    @if(session('alert'))
+        <div class="centered-notification">
+            {{ session('alert') }}
+        </div>
+    @endif
+    @if(session('alert-danger'))
+    <div class="centered-notification1">
+        {{ session('alert-danger') }}
+    </div>
+@endif
 <div id="header">
             <table>
                 <tr>
@@ -33,20 +67,26 @@
             </table>
         </div>
     <!-- Header section -->
-    <header class="position3nav">
+    <header>
         <nav>
             <!-- Navigation links -->
             <ul>
+              
             <li><a href="/home">Home</a></li>
             <li><a href="/upload">Upload</a></li>
-            <li><a href="#" class="icon" onclick="toggleDropdown(event)"><i class="fas fa-user"></i>Profile<img src="{{ asset('images/profile-removebg-preview (1).png') }}" alt="Profile Image"></a>
-                <!-- Dropdown menu for "Profile" link -->
+            <li><a href="#" class="icon" onclick="toggleDropdown(event)"><i class=""></i>Profile</a>
+            
                 <ul class="dropdown-menu" id="profileDropdown">
-                    <li><a href="#">Edit Account</a></li>
+                    <li><a href="/profile">View Profile</a></li> <!-- Added line for View Profile -->
+                    <li><a href="/account_settings">Edit Account</a></li>
+                    <li><a href="/manage_details">Manage Details</a></li>
                     <li><a href="#" onclick="logout()">Logout</a></li>
                 </ul>
             </li>
         </ul>
+        <div class="circular-border">
+            <a href="/profile"><img src="{{ asset('storage/' . Auth::user()->profile_image) }}" onerror="this.style.display='none'" class="profile-image" id="profileImagePreview"></a>
+        </div>
         </nav>
     </header>
 
@@ -54,18 +94,25 @@
     <div class="container">
         <h3 id="positionedit" style="font-family: Garamond">Edit Account Information</h3>
         @if(Session::has('success'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ Session::get('success') }}
-                                </div>
-                            @endif 
+            <div class="alert alert-success" role="alert" style="text-align: center;">
+                {{ Session::get('success') }}
+            </div>
+        @endif 
+
+        @if (session('error'))
+            <div class="alert alert-danger" role="alert" style="text-align: center;">
+                {{ session('error') }}
+            </div>
+        @endif
 
         <form method="post" action="{{ route('update_account') }}">
             @csrf
             <label for="department" class="form-label">Department<span style="color: red"></span></label>
-            <select name="department" class="form-control form-control-sm" id="department" required>
-                <option value="" disabled>Select Department</option>
+            <select name="department" class="form-select form-control-sm" id="department" required>
+                <option value="" disabled>Select Department:</option>
                 <option value="Quality Assurance" @if(Auth::user()->department === 'Quality Assurance') selected @endif>Quality Assurance</option>
-                <option value="Computing and Information Sciences" @if(Auth::user()->department === 'Computing and Information Sciences') selected @endif>Computing and Information Sciences</option>
+                <option value="Computer Sciences" @if(Auth::user()->department === 'Computer Science') selected @endif>Computer Science</option>
+                <option value="Information Technology" @if(Auth::user()->department === 'Information Technology') selected @endif>Information Technology</option>
                 <option value="Languages and Literature" @if(Auth::user()->department === 'Languages and Literature') selected @endif>Languages and Literature</option>
                 <option value="Physical Science" @if(Auth::user()->department === 'Physical Science') selected @endif>Physical Science</option>
                 <option value="Mathematics" @if(Auth::user()->department === 'Mathematics') selected @endif>Mathematics</option>
@@ -75,7 +122,7 @@
                 </select>
             <br>
             <label for="college">College:</label>
-            <input type="text" class="form-control form-control-sm" name="college" value="{{ Auth::user()->college }}" required>
+            <input type="text" class="form-control form-control-sm" name="college" value="{{ Auth::user()->college }}">
 
             <div class="row">
             <div class="col">
@@ -98,35 +145,186 @@
             <div class="row">
                 <div class="col">
                     <label for="current_password">Current Password:</label>
-                    <input type="password" class="form-control form-control-sm" name="current_password" id="current_password" class="form-control" required>
-                </div>
-            <div class="col">
-                    <label for="new_password">New Password:</label>
-                    <input type="password" class="form-control form-control-sm" name="new_password" id="new_password" required>
+                    <div class="input-group">
+                        <input type="password" class="form-control form-control-sm" name="current_password" id="current_password" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text" style="margin-top: -10px;">
+                                <i class="fa fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col">
-                    <label for="password_confirmation">Confirm New Password:</label>
-                    <input type="password" class="form-control form-control-sm" name="password_confirmation" id="password_confirmation" required>
-                </div>   
-                <div class="col" style="display: flex; align-items: center;">
-                <input type="checkbox" style="margin-top: 19px;" id="showPassword">
-                    <label for="showPassword" style="margin-left: 10px; margin-top: 12px;">Show Password</label>
-                    
-                </div>
-            </div>
-        
-            
+            <button type="button" class="btn btn-sm btn-secondary change-password-btn" id="changePasswordButton" style="background-color: green; color: white; margin-top: 8px; margin-left: 1px; margin-bottom: 23px;">Change Password</button>
+
             <div class="submitposition">
-                <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
+                <button type="submit" class="btn btn-sm btn-primary" id="saveChangesButton" >Save Changes</button>
                 <a href="/home"><button type="button" class="btn btn-sm btn-secondary">Cancel</button></a>
             </div>
         </form>
 </div>
 
-    <script>
+</body>
+</html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const changePasswordButton = document.querySelector('#changePasswordButton');
+
+        changePasswordButton.addEventListener('click', function () {
+            Swal.fire({
+                title: 'Change Password',
+                html:
+                    '<div class="input-group">' +
+                    '<input type="password" id="current_password" class="form-control" placeholder="Current Password" required>' +
+                    '<div class="input-group-append">' +
+                    '<button class="btn btn-outline-primary toggle-password" style="background-color: #1DACD6; color: white" type="button">' +
+                    '<i class="fas fa-eye"></i>' + // Font Awesome eye icon
+                    '</button>' +
+                    '</div>' +
+                    '</div>' +
+
+                    '<div class="input-group">' +
+                    '<input type="password" id="new_password" class="form-control" placeholder="New Password" required>' +
+                    '<div class="input-group-append">' +
+                    '<button class="btn btn-outline-primary toggle-password" style="background-color: #1DACD6; color: white" type="button">' +
+                    '<i class="fas fa-eye"></i>' + // Font Awesome eye icon
+                    '</button>' +
+                    '</div>' +
+                    '</div>' +
+
+                    '<div class="input-group">' +
+                    '<input type="password" id="confirm_password" class="form-control" placeholder="Confirm New Password" required>' +
+                    '<div class="input-group-append">' +
+                    '<button class="btn btn-outline-primary toggle-password" style="background-color: #1DACD6; color: white" type="button">' +
+                    '<i class="fas fa-eye"></i>' + // Font Awesome eye icon
+                    '</button>' +
+                    '</div>' +
+                    '</div>',
+                confirmButtonText: 'Change',
+                confirmButtonColor: '#7367f0',
+                showCancelButton: true,
+ 
+                preConfirm: () => {
+                    // ... (rest of your code remains the same)
+                    const currentPassword = Swal.getPopup().querySelector('#current_password').value;
+                    const newPassword = Swal.getPopup().querySelector('#new_password').value;
+                    const confirmPassword = Swal.getPopup().querySelector('#confirm_password').value;
+
+                    if (!currentPassword || !newPassword || !confirmPassword) {
+                        Swal.showValidationMessage('All fields are required.');
+                    } else if (newPassword !== confirmPassword) {
+                        Swal.showValidationMessage('New passwords do not match.');
+                    } else if (newPassword.length < 8) {
+                        Swal.showValidationMessage('New password must be at least 8 characters.');
+                    } else if (!/^[A-Z]/.test(newPassword)) {
+                        Swal.showValidationMessage('The first letter of the new password must be capital.');
+                    } else if (!/\d/.test(newPassword)) {
+                        Swal.showValidationMessage('The password must include at least one number.');
+                    } else if (!/[!@#$%^&*()]/.test(newPassword)) {
+                        Swal.showValidationMessage('The password must include at least one symbol (!@#$%^&*()).');
+                    } else {
+                        
+                    }
+
+                    return { currentPassword, newPassword };
+                },
+                didOpen: () => {
+                    const togglePasswordButtons = Swal.getPopup().querySelectorAll('.toggle-password');
+
+                    togglePasswordButtons.forEach(function (button) {
+                        button.addEventListener('click', function () {
+                            const inputField = this.parentElement.previousElementSibling;
+                            if (inputField.type === 'password') {
+                                inputField.type = 'text';
+                                this.innerHTML = '<i class="fas fa-eye-slash"></i>'; // Font Awesome eye-slash icon
+                            } else {
+                                inputField.type = 'password';
+                                this.innerHTML = '<i class="fas fa-eye"></i>'; // Font Awesome eye icon
+                            }
+                        });
+                    });
+                },
+            }).then((result) => {
+                if (!result.isConfirmed) return; // User canceled
+
+                fetch('/change-password', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}', // Add CSRF token if not already included
+                    },
+                    body: JSON.stringify(result.value),
+                })
+                .then((response) => {
+                    if (response.ok) {
+                        Swal.fire('Password changed successfully!', '', 'success').then(() => {
+                            location.reload(); // Reload the page after successful password change
+                        });
+                    } else {
+                        Swal.fire('Error changing password', 'An error occurred while changing the password due to incorrect current password.', 'error');
+                    }
+                })
+                .catch((error) => {
+                    console.error('An error occurred:', error);
+                    Swal.fire('Error changing password', 'An error occurred while changing the password due to incorrect current password.', 'error');
+                });
+            });
+        });
+    });
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+    // Get references to the relevant elements
+    const saveChangesButton = document.getElementById("saveChangesButton");
+    const currentPasswordInput = document.getElementById("current_password");
+
+    // Add a click event listener to the "Save Changes" button
+    saveChangesButton.addEventListener("click", function(event) {
+        // Prevent the default form submission
+        event.preventDefault();
+
+        // Check if the current password input is filled
+        if (currentPasswordInput.value.trim() === "") {
+            // If the current password is not filled, show an info alert
+            Swal.fire({
+                title: "Save Changes",
+                text: "Please enter your current password to save changes.",
+                icon: "warning",
+            });
+        } else {
+            // If the current password is filled, show the confirmation dialog
+            Swal.fire({
+                title: "Confirm Save",
+                text: "Are you sure you want to save the changes?",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonColor: '#7367f0',
+                cancelButtonColor: '#808080',
+                confirmButtonText: "Yes, save it!",
+                cancelButtonText: "No, cancel",
+                
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // If the user clicks "Yes" in the confirmation dialog,
+                    // submit the form
+                    document.querySelector("form").submit();
+                }
+            });
+        }
+    });
+});
+
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('current_password');
+
+    togglePassword.addEventListener('click', function () {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        togglePassword.classList.toggle('fa-eye-slash');
+    });
+
     var showPasswordCheckbox = document.getElementById("showPassword");
     var passwordInputs = document.querySelectorAll("input[type='password']");
 
@@ -152,12 +350,22 @@
 
     // Function to handle logout
     function logout() {
-        const confirmLogout = window.confirm("Are you sure you want to logout?");
-        if (confirmLogout) {
+    // Use SweetAlert for the confirmation dialog
+    Swal.fire({
+        title: 'Logout',
+        text: 'Are you sure you want to logout?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#7367f0',
+        cancelButtonColor: '#808080',
+        confirmButtonText: 'Yes, Logout'
+    }).then((result) => {
+        if (result.isConfirmed) {
             // Redirect to the login page after logout confirmation
-            window.location.href = "/login"; // Replace "/login" with the actual URL of your login page
+            window.location.href = "/login"; // Replace with your login page URL
         }
-    }
+    });
+}
 
     // Close the dropdown menu if the user clicks outside of it
     window.onclick = function(event) {
@@ -172,5 +380,3 @@
         }
     };
     </script>
-</body>
-</html>

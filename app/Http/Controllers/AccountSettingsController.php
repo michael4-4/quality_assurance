@@ -18,47 +18,58 @@ class AccountSettingsController extends Controller
     {
         // Validate the form data
         $request->validate([
-            'department' => 'required|string|max:255',
-            'college' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
-            'firstname' => 'required|string|max:255',
-            'middlename' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'password' => 'nullable|string|min:8|confirmed',
-            'current_password' => 'required_with:password',
+            'department' => 'required',
+            'college' => 'nullable', // Make the college input field field optional
+            'lastname' => 'required',
+            'firstname' => 'required',
+            'middlename' => 'required',
+            'email' => 'required|email',
+            'current_password' => 'required',
         ]);
 
         // Get the authenticated user
         $user = Auth::user();
 
-        // Update the user's account settings
-        $user->update([
-            'department' => $request->input('department'),
-            'college' => $request->input('college'),
-            'lastname' => $request->input('lastname'),
-            'firstname' => $request->input('firstname'),
-            'middlename' => $request->input('middlename'),
-            'email' => $request->input('email'),
-        ]);
-
-        // Check if the current password is provided and matches the user's password
-        if ($request->has('current_password')) {
-            if (Hash::check($request->current_password, $user->password)) {
-                // If new password is provided, update the password
-                if ($request->filled('password')) {
-                    $user->password = Hash::make($request->password);
-                }
-            } else {
-                return back()->with('error', 'Current password is incorrect.');
-            }
+        // Check if the provided current password is correct
+        if (!Hash::check($request->input('current_password'), $user->password)) {
+            return redirect('/account_settings')->with('alert-danger', 'Current password is incorrect. Please Try Again');
         }
 
-        // Save the updated user record
+        // Update user account information
+        $user->department = $request->input('department');
+        $user->college = $request->input('college');
+        $user->lastname = $request->input('lastname');
+        $user->firstname = $request->input('firstname');
+        $user->middlename = $request->input('middlename');
+        $user->email = $request->input('email');
+
+        // Save the updated user data
         $user->save();
 
-        session()->flash('success', 'Successfully updated account settings!');
-
-        return redirect()->route('account_settings');
+        return redirect('/account_settings')->with('alert', 'Account information updated successfully.');
     }
+
+    public function changePassword(Request $request)
+{
+    // Validate the incoming request data (currentPassword, newPassword)
+    $request->validate([
+        'currentPassword' => 'required',
+        'newPassword' => 'required|min:8', // You can add more validation rules as needed
+    ]);
+
+    // Get the currently authenticated user
+    $user = auth()->user();
+
+    // Check if the current password provided matches the user's current password
+    if (!Hash::check($request->input('currentPassword'), $user->password)) {
+        return response()->json(['message' => 'Current password is incorrect.'], 422);
+    }
+
+    // Update the user's password with the new one
+    $user->password = Hash::make($request->input('newPassword'));
+    $user->save();
+
+    return response()->json(['message' => 'Password changed successfully.']);
+}
 
 }

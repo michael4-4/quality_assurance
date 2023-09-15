@@ -9,6 +9,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage; // If you're using Storage for file handling
+use App\Models\Document;
+
 
 class User extends Authenticatable
 {
@@ -20,6 +23,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'role',
         'department',
         'college',
         'lastname',
@@ -60,4 +64,15 @@ class User extends Authenticatable
     
         return $user !== null;
     }
+
+    public function documents()
+    {
+        return $this->hasMany(Document::class);
+    }
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin'; // Adjust the role value based on your setup
+    }
+
 }

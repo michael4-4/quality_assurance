@@ -7,9 +7,23 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash; //hashing password
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth; // for authentication
+use App\Models\Role;
+use App\Models\Department; // Import the Department model
 
 class AuthController extends Controller
 {
+    public function showRegistrationForm()
+{
+    // Fetch all roles from the 'roles' table
+    $roles = Role::all();
+
+    // Fetch all the roles from the 'department' table
+    $departments = Department::all();
+
+    // Pass the $roles variable to the view
+    return view('register', compact('roles', 'departments'));
+}
+
     // shows the Registration form
     public function register () {
         return view('register');
@@ -19,13 +33,15 @@ class AuthController extends Controller
     public function registerPost(Request $request) {
         // Validate the form data
         $validator = Validator::make($request->all(), [
+            'role' => 'required|in:admin,secondary',
             'department' => 'required',
-            'college' => 'required|string|max:255',
+            'college' => 'nullable|string|max:255',
             'lastname' => 'required|string|max:255|unique:users',
             'firstname' => 'required|string|max:255|unique:users',
             'middlename' => 'required|string|max:255|unique:users',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:8|confirmed',
+      
         ], [
             'lastname.unique' => 'The Last name is already taken.',
             'firstname.unique' => 'The First name is already taken.',
@@ -38,7 +54,8 @@ class AuthController extends Controller
         }
 
         $user = new User();
-
+        
+        $user->role = $request->role;
         $user->department = $request->department;
         $user->college = $request->college;
         $user->lastname = $request->lastname;
@@ -53,7 +70,7 @@ class AuthController extends Controller
         //return redirect()->route('login')->with('success', 'Successfully Registered ');
         
         // Set a success flash message
-        session()->flash('success', 'Successfully Registered! Please login with your credentials.');
+        session()->flash('alert', 'Successfully Registered! Please login with your credentials.');
 
         // Redirect the user to the login page
         return redirect()->route('login');
@@ -66,25 +83,33 @@ class AuthController extends Controller
 
     // process of Login
     public function loginPost(Request $request) {
-
-        $credentials = [
-            'email' => $request->email,
-            'password' => $request->password,
-        ];
-
-        if (Auth::attempt($credentials)) {
-            return redirect('/home')->with('success', 'Successfully Login');
+        $credentials = $request->only('email', 'password');
+        $remember = $request->has('remember'); // Check if the "Remember Me" checkbox is checked
+    
+        if (Auth::attempt($credentials, $remember)) {
+            // Store the email in the session if "Remember Me" was checked
+            if ($remember) {
+                session(['remember_email' => $request->input('email')]);
+            } else {
+                session()->forget('remember_email');
+            }
+    
+            return redirect('/home')->with('alert', 'You have Successfully Logged In!');
         }
-
-        return back()->with('error', 'Incorrect Email or Password');
+    
+        // If login fails, return to the login form with inputs
+        return back()
+            ->with('alert2', 'Incorrect Email or Password, Try Again!')
+            ->withInput($request->only('password'));
+           // ->withInput($request->except('password')); // Exclude password input from being repopulated
     }
+    
 
     // process of Logout
     public function logout(){
         Auth::logout();
         return redirect()->route('login');
     }
-
 
     public function updatePassword(Request $request)
     {
@@ -104,4 +129,5 @@ class AuthController extends Controller
 
         return redirect()->route('account_settings')->with('success', 'Password updated successfully!');
     }
+
 }
