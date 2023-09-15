@@ -15,10 +15,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<<<<<<< HEAD
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
  
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+=======
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
   <script>
         // Wait for a few seconds and then remove the notification
         setTimeout(function() {
@@ -27,6 +30,7 @@
                 notification.remove();
             }
         }, 6000); // Remove after 5 seconds
+<<<<<<< HEAD
 
         // Wait for a few seconds and then remove the notification
         setTimeout(function() {
@@ -40,6 +44,9 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+=======
+</script>
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
 
 </head>
 <body>
@@ -48,12 +55,15 @@
                 {{ session('alert') }}
             </div>
         @endif
+<<<<<<< HEAD
 
         @if(session('success'))
             <div class="centered-notification2">
                 {{ session('success') }}
             </div>
         @endif
+=======
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
 
 <div id="header">
             <table>
@@ -99,13 +109,17 @@
         </nav>
     </header>
 
+<<<<<<< HEAD
     
+=======
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
 
 <!-- Main content section -->
 <div class="container">
     <br>
     @auth
     <h3 class="position">Welcome {{ Auth::user()->firstname }}!</h3>
+<<<<<<< HEAD
     <div style="margin-bottom: -25px;"></div>
 
 <form onsubmit="return validateSearch()">
@@ -125,6 +139,152 @@
 </form>
     
     <!-- Create a dynamic filter search with five dropdowns -->
+=======
+    
+    <!-- Create a search form with four dropdowns -->
+    <form action="/search" method="GET" class="row">
+        <div class="col-md-3">
+            <div class="input-group">
+                <label for="programCourse" class="input-group-text">Program Course:</label>
+                <select class="form-control" id="programCourse" name="programCourse">
+                    <!-- Options for Program Course -->
+                    <option value="" disabled selected>Select Program Course</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                    <option value="option4">Option 4</option>
+                    <option value="option5">Option 5</option>
+                    <option value="option6">Option 6</option>
+                    <option value="option7">Option 7</option>
+                    <option value="option8">Option 8</option>
+                    <option value="option9">Option 9</option>
+                    <option value="option10">Option 10</option>
+                    <option value="option11">Option 11</option>
+                    <option value="option12">Option 12</option>
+                    <option value="option13">Option 13</option>
+                    <option value="option14">Option 14</option>
+                    <option value="option15">Option 15</option>
+                    <option value="option16">Option 16</option>
+                    <option value="option17">Option 17</option>
+                    <option value="option18">Option 18</option>
+                    <option value="option19">Option 19</option>
+                    <option value="option20">Option 20</option>
+                    <!-- ... and so on ... -->
+                </select>
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-chevron-down"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <!-- Repeat the above structure for the other three dropdowns -->
+            <div class="input-group">
+                <label for="department" class="input-group-text">Department:</label>
+                <select class="form-control" id="department" name="department">
+                    <!-- Options for Department -->
+                    <option value="" disabled selected>Select Department</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                    <option value="option4">Option 4</option>
+                    <option value="option5">Option 5</option>
+                    <option value="option6">Option 6</option>
+                    <option value="option7">Option 7</option>
+                    <option value="option8">Option 8</option>
+                    <option value="option9">Option 9</option>
+                    <option value="option10">Option 10</option>
+                    <option value="option11">Option 11</option>
+                    <option value="option12">Option 12</option>
+                    <option value="option13">Option 13</option>
+                    <option value="option14">Option 14</option>
+                    <option value="option15">Option 15</option>
+                    <option value="option16">Option 16</option>
+                    <option value="option17">Option 17</option>
+                    <option value="option18">Option 18</option>
+                    <option value="option19">Option 19</option>
+                    <option value="option20">Option 20</option>
+                    <!-- ... and so on ... -->
+                </select>
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-chevron-down"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="input-group">
+                <label for="validityPeriod" class="input-group-text">Validity Period:</label>
+                <select class="form-control" id="validityPeriod" name="validityPeriod">
+                    <!-- Options for Validity Period -->
+                    <option value="" disabled selected>Select Validity Period</option>
+                <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                    <option value="option4">Option 4</option>
+                    <option value="option5">Option 5</option>
+                    <option value="option6">Option 6</option>
+                    <option value="option7">Option 7</option>
+                    <option value="option8">Option 8</option>
+                    <option value="option9">Option 9</option>
+                    <option value="option10">Option 10</option>
+                    <option value="option11">Option 11</option>
+                    <option value="option12">Option 12</option>
+                    <option value="option13">Option 13</option>
+                    <option value="option14">Option 14</option>
+                    <option value="option15">Option 15</option>
+                    <option value="option16">Option 16</option>
+                    <option value="option17">Option 17</option>
+                    <option value="option18">Option 18</option>
+                    <option value="option19">Option 19</option>
+                    <option value="option20">Option 20</option>
+                    <!-- ... and so on ... -->
+                </select>
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-chevron-down"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="input-group">
+                <label for="grandMean" class="input-group-text">Grand Mean:</label>
+                <select class="form-control" id="grandMean" name="grandMean">
+                    <!-- Options for Grand Mean -->
+                    <option value="" disabled selected>Select Grand Mean</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                    <option value="option4">Option 4</option>
+                    <option value="option5">Option 5</option>
+                    <option value="option6">Option 6</option>
+                    <option value="option7">Option 7</option>
+                    <option value="option8">Option 8</option>
+                    <option value="option9">Option 9</option>
+                    <option value="option10">Option 10</option>
+                    <option value="option11">Option 11</option>
+                    <option value="option12">Option 12</option>
+                    <option value="option13">Option 13</option>
+                    <option value="option14">Option 14</option>
+                    <option value="option15">Option 15</option>
+                    <option value="option16">Option 16</option>
+                    <option value="option17">Option 17</option>
+                    <option value="option18">Option 18</option>
+                    <option value="option19">Option 19</option>
+                    <option value="option20">Option 20</option>
+                    <!-- ... and so on ... -->
+                </select>
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-chevron-down"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+    
+    <!-- ... existing code for success message ... -->
+    @endif
+</div>
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
 
         <div class="col-md-3">
           
@@ -258,11 +418,18 @@
 <div id="noDocumentsMessage5" style="display: none; margin-left:500px; margin-top:98px"><i>--No documents found matching the selected grand mean.--</i></div>
  @if ($documents->count() > 0)
     <div class="row">
+<<<<<<< HEAD
         <div id="doccontainer"> <!-- Add an id to the container -->
         @foreach ($documents as $document)
         <div class="col-md-4" data-program-course="{{ $document->program_course }}" data-date-of-visit="{{ $document->date_of_visit }}" data-type-of-award="{{ $document->type_of_award }}" data-validity-period="{{ $document->validity_period }}" data-grand-mean="{{ $document->grand_mean }}" data-creation-timestamp="{{ $document->created_at->timestamp }}"  style="margin-left: 115px; margin-right: -275px; margin-bottom: 30px">
             
             <h5 style="margin-left: -1px;">{{ $document->program_course }}</h5>
+=======
+
+        @foreach ($documents as $document)
+        <div class="col-md-4">
+            <h5>{{ $document->program_course }}</h5>
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
             
             @if ($document->uploader)
                 <p>Uploaded by: <b>{{ $document->uploader->firstname}} {{ $document->uploader->middlename }} {{ $document->uploader->lastname }}</b></p>
@@ -316,8 +483,13 @@
 @endforeach
     </div>
     @else
+<<<<<<< HEAD
         <p class="text-center" style="margin-top: 100px"><i>--No documents uploaded yet.--</i></p>
     @endif 
+=======
+        <p class="text-center"><i>--No documents uploaded yet.--</i></p>
+    @endif
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
 
 </body>
 </html>

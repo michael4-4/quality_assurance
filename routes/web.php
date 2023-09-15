@@ -46,6 +46,7 @@ Route::post('/update_account', [AccountSettingsController::class, 'update'])->na
 Route::middleware(['auth'])->group(function () {
     Route::get('/upload', [DocumentController::class, 'uploadForm'])->name('upload.form');
     Route::post('/upload', [DocumentController::class, 'upload'])->name('upload');
+<<<<<<< HEAD
     Route::get('/upload', [DocumentController::class, 'showUploadForm'])->name('upload');
 
 });
@@ -75,3 +76,12 @@ Route::post('/add-department', [ManageDetailsController::class, 'addDepartment']
 
 
 Route::post('add-programcourse', [ManageDetailsController:: class, 'addProgramCourse'])->name('add_programcourse');
+=======
+});
+
+Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
+Route::post('/update-profile-image', [ProfileController::class, 'updateProfileImage'])->name('updateProfileImage');
+Route::post('/edit-profile-image', [ProfileController::class, 'editProfileImage'])->name('editProfileImage');
+Route::delete('/delete-profile-image', [ProfileController::class, 'deleteProfileImage'])->name('deleteProfileImage');
+
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1

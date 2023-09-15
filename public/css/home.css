@@ -252,6 +252,7 @@ nav ul li a img {
     animation: slideDown 1.2s ease-in-out;
     border-radius: 1px;
 }
+<<<<<<< HEAD
 
 /* Centered notification with downward animation */
 .centered-notification2 {
@@ -484,3 +485,5 @@ nav ul li a img {
     margin-left: 10px; /* Add margin to separate it from the search input */
     animation: glowing 4s infinite; /* Apply the glowing animation */
 }
+=======
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1

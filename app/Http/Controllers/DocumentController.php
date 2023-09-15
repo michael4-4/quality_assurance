@@ -31,7 +31,11 @@ class DocumentController extends Controller
         'programcourse' => 'required|string',
         'typeofvisit' => 'required|string',
         'dateofvisit' => 'required|string',
+<<<<<<< HEAD
         'type_of_award' => 'required|string',
+=======
+        'award' => 'required|string',
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
         'validityperiod' => 'required|string',
         'grandmean' => 'required|numeric',
         'document' => 'required|mimes:pdf',
@@ -45,6 +49,7 @@ class DocumentController extends Controller
 
     // Upload the document and store it in the "public/documents" directory
     $documentPath = $request->file('document')->storeAs('documents', $originalFilename, 'public');
+<<<<<<< HEAD
 
     // Store the document details in the database and associate it with the user
     auth()->user()->documents()->create([
@@ -84,6 +89,24 @@ public function delete(Document $document) {
     } catch (\Exception $e) {
         return response()->json(['message' => 'An error occurred while deleting the document'], 500);
     }
+=======
+
+    // Store the document details in the database and associate it with the user
+    auth()->user()->documents()->create([
+        'program_course' => $request->programcourse,
+        'type_of_visit' => $request->typeofvisit,
+        'date_of_visit' => $request->dateofvisit,
+        'award' => $request->award,
+        'validity_period' => $request->validityperiod,
+        'grand_mean' => $request->grandmean,
+        'document_path' => $originalFilename,
+    ]);
+
+    // Redirect back to /home with a success message
+    return redirect('/home')->with('success', 'Document uploaded successfully.');
+}
+
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
 }
 
 }

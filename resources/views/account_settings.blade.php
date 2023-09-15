@@ -94,6 +94,7 @@
     <div class="container">
         <h3 id="positionedit" style="font-family: Garamond">Edit Account Information</h3>
         @if(Session::has('success'))
+<<<<<<< HEAD
             <div class="alert alert-success" role="alert" style="text-align: center;">
                 {{ Session::get('success') }}
             </div>
@@ -104,6 +105,12 @@
                 {{ session('error') }}
             </div>
         @endif
+=======
+                                <div class="alert alert-success" role="alert" style="text-align: center;">
+                                    {{ Session::get('success') }}
+                                </div>
+                            @endif 
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
 
         <form method="post" action="{{ route('update_account') }}">
             @csrf

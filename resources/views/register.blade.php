@@ -12,9 +12,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{asset('css/register.css')}}">
     <script src="{{ asset('js/register.js') }}" defer></script>
+<<<<<<< HEAD
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.min.js"></script>
 
+=======
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
 </head>
 <body>  
 
@@ -71,6 +74,7 @@
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
+<<<<<<< HEAD
                                     <label for="department" class="form-label">Role<span style="color: red"> *</span></label>
                                     <select name="role" class="form-select" id="role" required>>
                                         <option value="" disabled selected>Select Role</option>
@@ -79,11 +83,22 @@
                                         @foreach ($roles as $role)
                                         <option value="{{ $role->name }}">{{ $role->name }}</option>
                                     @endforeach
+=======
+                                    <label for="department" class="form-label">Role<span style="color: red">*</span></label>
+                                    <select name="role" class="form-select" id="department" required>>
+                                        <option value="" disabled selected>Select Role</option>
+                                        <option value="admin">Quality Assurance Staff (Admin)</option>
+                                        <option value="secondary">Department Chair (Secondary User)</option>
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
                                     </select>
                                 </div>
 
                                 <div class="col">
+<<<<<<< HEAD
                                     <label for="department" class="form-label">Department<span style="color: red"> *</span></label>
+=======
+                                    <label for="department" class="form-label">Department<span style="color: red">*</span></label>
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
                                     <select name="department" class="form-select" id="department" required>
                                     <option value="" disabled selected>Select Department</option>
                                     <option value="Quality Assurance">Quality Assurance</option>
@@ -95,37 +110,57 @@
                                     <option value="Biology">Biology</option>
                                     <option value="Physical Education">Physical Education</option>
                                     <option value="Social Sciences">Social Sciences</option>
+<<<<<<< HEAD
                                     @foreach ($departments as $department)
                                         <option value="{{ $department->name }}">{{ $department->name }}</option>
                                     @endforeach
+=======
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
                                     </select>
                                 </div>
                             </div>
                         </div>
 
                                 <div class="mb-3">
+<<<<<<< HEAD
                                     <label for="college" class="form-label">College<span style="color: grey"> <em>- optional</em></span></label>
                                     <input type="text" name="college" class="form-control" id="college" placeholder="College">
+=======
+                                    <label for="college" class="form-label">College</label>
+                                    <input type="text" name="college" class="form-control" id="college" placeholder="College (optional)">
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
                                 </div>
 
                                 <div class="mb-3">
                                 <div class="row">
                                     <div class="col">
+<<<<<<< HEAD
                                         <label for="lastname" class="form-label">Last Name<span style="color: red"> *</span></label>
+=======
+                                        <label for="lastname" class="form-label">Last Name<span style="color: red">*</span></label>
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
                                         <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Last Name" required>
                                         @error('lastname')
                                             <div class="text-danger custom-error-message">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col">
+<<<<<<< HEAD
                                         <label for="firstname" class="form-label">First Name<span style="color: red"> *</span></label>
+=======
+                                        <label for="firstname" class="form-label">First Name<span style="color: red">*</span></label>
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
                                         <input type="text" name="firstname" class="form-control" id="firstname" placeholder="First Name" required>
                                         @error('firstname')
                                             <div class="text-danger custom-error-message">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col">
+<<<<<<< HEAD
                                         <label for="middlename" class="form-label">Middle Name<span style="color: red"> *</span></label>
+=======
+                                        <label for="middlename" class="form-label">Middle Name<span style="color: red">*</span></label>
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
                                         <input type="text" name="middlename" class="form-control" id="middlename" placeholder="Middle Name" required>
                                         @error('middlename')
                                             <div class="text-danger custom-error-message">{{ $message }}</div>
@@ -153,7 +188,15 @@
                                                 </button>
                                                 
                                             </div>
+<<<<<<< HEAD
                                         </div>                                
+=======
+                                        </div>
+
+                                        
+
+
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
 
                                         <div class="col">
                                             <label for="password_confirmation" class="form-label">Confirm Password<span style="color: red">*</span></label>
@@ -222,6 +265,7 @@
     </footer>
 
     <script>
+<<<<<<< HEAD
         document.addEventListener('DOMContentLoaded', function() {
         // Get the register button element
         const registerBtn = document.getElementById('registerBtn');
@@ -329,6 +373,9 @@
         });
     });
 
+=======
+    
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
         const togglePassword = document.querySelectorAll('.toggle-password');
         const passwordInput = document.querySelector('#password');
         const confirmPasswordInput = document.querySelector('#password_confirmation');

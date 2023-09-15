@@ -99,11 +99,20 @@ class AuthController extends Controller
     
         // If login fails, return to the login form with inputs
         return back()
+<<<<<<< HEAD
             ->with('alert2', 'Incorrect Email or Password, Try Again!')
             ->withInput($request->only('password'));
            // ->withInput($request->except('password')); // Exclude password input from being repopulated
     }
     
+=======
+            ->with('error', 'Incorrect Email or Password')
+            ->withInput($request->except('password')); // Exclude password input from being repopulated
+    }
+    
+
+
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
 
     // process of Logout
     public function logout(){

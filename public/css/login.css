@@ -79,8 +79,13 @@ object-fit: cover; /* Ensure the image covers the entire circle */
 }
 
 .layout {
+<<<<<<< HEAD
 padding-top: 6px;
 padding-bottom: 65px;
+=======
+padding-top: 35px;
+padding-bottom: 75px;
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
 
 }
 
@@ -152,7 +157,11 @@ position: absolute;
 
 .title {
     margin-left: 600px;
+<<<<<<< HEAD
     margin-top: 35px;
+=======
+    margin-top: 45px;
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
 }
 
 .foreground-container {
@@ -175,8 +184,13 @@ position: absolute;
 /* Centered notification with upward animation */
 .centered-notification {
     position: fixed;
+<<<<<<< HEAD
     bottom: 5.8%;
     left: 33.93%;
+=======
+    bottom: 4.8%;
+    left: 33.9%;
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
     background-color: #4BB543;; /* Change background color to yellow */
     color: white; /* Change text color to black */
     padding: 11px;
@@ -186,6 +200,7 @@ position: absolute;
     animation: slideUp 1.4s ease-in-out;
 }
 
+<<<<<<< HEAD
 /* Centered notification with downward animation */
 .centered-notification2 {
     position: fixed;
@@ -200,18 +215,25 @@ position: absolute;
     animation: slideDown 1.2s ease-in-out;
     border-radius: 1px;
 }
+=======
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
 
 /* Style for the checkbox itself */
 .remember-checkbox {
     position: absolute;
     right: 4%;
     top: 50%;
+<<<<<<< HEAD
     transform: translateY(162%);
+=======
+    transform: translateY(85%);
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
 }
 
 .remember-checkbox.adjusted {
     top: 60%; /* Adjust this value as needed */
 }
+<<<<<<< HEAD
 
 .remember-checkbox input[type="checkbox"] {
     border: 1px solid grey ; /* Add a grey border to the checkbox */
@@ -228,3 +250,5 @@ position: absolute;
     font-size: 14px; /* Reduce the font size of the buttons */
 }
 
+=======
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1

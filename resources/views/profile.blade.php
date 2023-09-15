@@ -11,10 +11,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" integrity="sha384-Nsz6oApLgCYeKB4gt3KON1E5yZgx4j7lX0kNlgh1lRV58LyXX4Pe+0WqFdaJeCUV" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.16.0/font/bootstrap-icons.css" rel="stylesheet">
+<<<<<<< HEAD
  
     <!-- Include the Cropper.js library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+=======
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
 
     <link rel="stylesheet" href="{{asset('css/profile.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
@@ -69,6 +72,7 @@
         <div class="col-md-16">
 
     
+<<<<<<< HEAD
             <form action="{{ route('editProfileImage') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="profile-image-container">
@@ -90,6 +94,34 @@
                 
                 <button style="background-color: #d9534f; border-color: #d9534f;" type="button" class="btn btn-danger delete-button" onclick="showDeleteConfirmation()">🗑️ Delete</button>
 
+=======
+        <form action="{{ route('editProfileImage') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <div class="profile-image-container">
+        <div class="circular-border">
+            <img src="{{ asset('storage/' . $user->profile_image) }}" alt="" class="profile-image" id="profileImagePreview">
+            <label for="profileImageInput" class="add-icon">
+                <i class="bi bi-plus-circle-fill"></i>
+            </label>
+            <label for="profileImageInput" class="edit-icon">
+                <i class="bi bi-pencil-fill"></i>
+            </label>
+        </div>
+    </div>
+    <input type="file" id="profileImageInput" name="profileImage" class="sr-only" onchange="showImagePreview()">
+    
+    <!-- Hidden input for image deletion -->
+    <input type="hidden" id="deleteProfileImage" name="deleteProfileImage" value="0">
+
+    <button style="background-color: #f0ad4e; border-color: #f0ad4e;" type="button" class="btn btn-warning edit-button" onclick="showEditConfirmation()">Edit Image</button>
+
+    <button type="submit" class="btn btn-danger delete-button" onclick="showDeleteConfirmation()">Delete Image</button>
+    <button type="submit" class="btn btn-info save-button">Save Image <i class="bi bi-plus-circle-fill"></i></button>
+
+
+
+            
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
                 <div class="form-group">
                     <h3 class="text-center" style="font-family: Garamond">Your Profile Information</h3>
 
@@ -143,6 +175,7 @@
 
 <script>
     function showDeleteConfirmation() {
+<<<<<<< HEAD
     Swal.fire({
         title: 'Delete Profile Image',
         text: 'Are you sure you want to delete the profile image?',
@@ -211,6 +244,29 @@
         const preview = document.getElementById('profileImagePreview');
         const circularBorderImage = document.getElementById('circularBorderImage');
 
+=======
+    const confirmation = confirm("Are you sure you want to delete the image?");
+    if (confirmation) {
+        document.getElementById('deleteProfileImage').value = '1';
+    } else {
+        document.getElementById('deleteProfileImage').value = '0';
+    }
+}
+
+
+    function showEditConfirmation() {
+    const confirmEdit = window.confirm("Do you want to edit the profile image?");
+    if (confirmEdit) {
+        document.getElementById('profileImageInput').click(); // Trigger the file input click
+    }
+}
+
+    function showImagePreview() {
+        const input = document.getElementById('profileImageInput');
+        const preview = document.getElementById('profileImagePreview');
+        const circularBorderImage = document.getElementById('circularBorderImage');
+
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
         if (input.files && input.files[0]) {
             const reader = new FileReader();
             

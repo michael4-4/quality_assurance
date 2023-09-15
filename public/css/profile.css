@@ -169,7 +169,11 @@ header nav ul li .icon {
         }
 
     .container {
+<<<<<<< HEAD
             margin-top: 20px;
+=======
+            margin-top: 25px;
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
             margin-bottom: 5px;
             display: flex;
             justify-content: center;
@@ -319,9 +323,12 @@ header nav ul li .icon {
             height: 120px; /* Adjust as needed */
             border-radius: 50%;
             overflow: hidden;
+<<<<<<< HEAD
             background-image: url('/images/no profile.png');
             background-size: cover; /* This will adjust the image to cover the entire container */
             background-position: center; /* Center the image within the container */
+=======
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
         }
         
         .profile-image {
@@ -363,20 +370,38 @@ header nav ul li .icon {
             opacity: 1;
         }
 
+<<<<<<< HEAD
  
         .save-button {
             position: absolute;
             top: 272px;
             right: 412px;
             padding: 5px 10px;
+=======
+        .btn-primary {
+            font-size: 14px;
+            padding: 5px 5px;
+        }
+
+        .save-button {
+            position: absolute;
+            top: 279px;
+            right: 404px;
+            padding: 6px 11px;
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
             font-size: 13px;
             color: white;
         }
 
         .edit-button {
             position: absolute;
+<<<<<<< HEAD
             top: 272px;
             right: 494px;
+=======
+            top: 280px;
+            right: 504px;
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
             padding: 6px 11px;
             font-size: 13px;
             color: white;
@@ -384,6 +409,7 @@ header nav ul li .icon {
 
         .delete-button {
             position: absolute;
+<<<<<<< HEAD
             top: 272px;
             right: 491px;
             padding: 6px 11px;
@@ -490,3 +516,11 @@ html, body {
 }
 
 
+=======
+            top: 280px;
+            right: 587px;
+            padding: 6px 11px;
+            font-size: 13px;
+            color: white;
+        }
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1

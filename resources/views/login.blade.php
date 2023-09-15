@@ -22,6 +22,7 @@
             if (notification) {
                 notification.remove();
             }
+<<<<<<< HEAD
         }, 6000); // Remove after 5 seconds
     </script>
     <script>
@@ -34,6 +35,11 @@
         }, 6000); // Remove after 5 seconds
     </script>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+=======
+        }, 10000); // Remove after 5 seconds
+    </script>
+    
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
 
     </head>
     <body>  
@@ -42,12 +48,15 @@
             {{ session('alert') }}
         </div>
     @endif
+<<<<<<< HEAD
 
         @if(session('alert2'))
         <div class="centered-notification2">
             {{ session('alert2') }}
         </div>
     @endif
+=======
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
             <div id="header">
                 <table>
                     <tr>
@@ -85,9 +94,14 @@
             <div class="title">
             <h2 style="font-family: Garamond"><b>Login Now</b></h2>
             </div>
+<<<<<<< HEAD
         -->
             
         <p style="font-family: 'Great Vibes', sans-serif; font-stretch: expanded; font-size:30px; text-align:center; margin-top:50px;">Welcome to our system!<br>We're delighted to have you join us and make the most of our services.</p>
+=======
+
+            
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
 <div class="layout">
                             
     <div class="row justify-content-center">
@@ -95,6 +109,7 @@
             <div class="card">
                 
             <div class="card-body">
+<<<<<<< HEAD
                 <h2 style="font-family: Garamond; text-align:center"><b>Login Now</b></h2>
                     <!--
                     @if(Session::has('error'))
@@ -108,13 +123,30 @@
                             
                             <label for="email" class="form-label">Email Address<span style="color: red"> *</span></label>
                             <input type="email" name="email" class="form-control form-control-sm" id="email" placeholder="name@example.com" required
+=======
+                       
+                    @if(Session::has('error'))
+                        <div class="alert alert-danger" role="alert" style="max-width: 400px; text-align:center; font-size: 15px;" >
+                            {{ Session::get('error') }}
+                        </div>
+                    @endif
+                    <form action="{{ route('login') }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address<span style="color: red">*</span></label>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" required
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
                             value="{{ session('remember_email') ?? old('email') }}" required>
                         </div>
                 
                 <div class="mb-3">
                     <label for="password" class="form-label">Password<span style="color: red"> *</span></label>
                     <div class="input-group">
+<<<<<<< HEAD
                         <input type="password" name="password" class="form-control form-control-sm" id="password" placeholder="Password" required>
+=======
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+>>>>>>> 4e3eecf13bc0cc063f27a9b238f0ac76d39637f1
                             
                         <button class="btn btn-outline-secondary toggle-password" type="button">
                             <i class="far fa-eye"></i>
